@@ -30,3 +30,5 @@ Things you may want to cover:
 URL：
 
 送料は一律「800円」
+
+商品の種類は、ケーキ、プリン、焼き菓子、キャンディの4種類
