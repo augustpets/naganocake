@@ -29,4 +29,4 @@ Things you may want to cover:
 
 URL：
 
-送料は一律「880円」
+送料は一律「800円」
