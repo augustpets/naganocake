@@ -28,3 +28,5 @@ Things you may want to cover:
 概要：長野県にある洋菓子店「ながのCAKE」の商品を通販するためのECサイト
 
 URL：
+
+送料は一律「880円」
