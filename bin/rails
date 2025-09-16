@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-load File.expand_path("spring", __dir__)
+#load File.expand_path("spring", __dir__)
+#上記の記述はrails g devise Customerを実行したときにRails::Application is abstract というエラーの原因だったのでコメントアウトした
 APP_PATH = File.expand_path('../config/application', __dir__)
 require_relative "../config/boot"
 require "rails/commands"
