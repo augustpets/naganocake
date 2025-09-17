@@ -1,0 +1,28 @@
+<h1>注文情報入力画面/会員側p.8</h1>
+
+<h3>注文情報入力<h3>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-11">
+    <%= form_with model: @order, method: :post do |f| %>
+      <p>支払方法</p>
+
+      <p>お届け先</p>
+
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)"%>
+      <%= f.text_field :postal_code%>
+      <%= f.label :address, "住所" %>
+      <%= f.text_area :address %>
+      <%= f.label :name, "宛名" %>
+      <%= f.text_field :name %>
+      <%= f.submit "確認画面へ進む" %>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
