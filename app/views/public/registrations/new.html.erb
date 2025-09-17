@@ -36,6 +36,13 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
+      <%= f.label :address, '住所' %>
+      <%= f.text_field :address, class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0" %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
       <%= f.label :postal_code, '郵便番号(ハイフンなし)' %>
       <%= f.number_field :postal_code, class: "form-control", placeholder: "0000000" %>
     </div>
