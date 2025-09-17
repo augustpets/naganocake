@@ -1,0 +1,43 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col text-start'>
+      ショッピングカート
+    </div>
+    <div class='col text-end'>
+      <%= link_to 'カートを空にする', class="btn btn-sm btn-danger 0000000" %>
+    </div>
+    <table class='table table-hover'>
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.each do |cart_item| %>
+          <tr>
+            <td>
+              <
+            </td>
+            <td>
+              <%= cart_item.item.with_tax_price%>
+            </td>
+            <td>
+
+            </td>
+            <td>
+              <%= cart_item.subtotal%>
+            </td>
+            <td>
+              <%= link_to '削除する', 0000000, class='btn btn-sm btn-danger 0000000'>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class='col text-start'>
+      
