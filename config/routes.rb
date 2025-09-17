@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'orders/new'
+    get 'orders/confirm'
+    get 'orders/thanks'
+    get 'orders/create'
+    get 'orders/index'
+    get 'orders/show'
+  end
 
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
