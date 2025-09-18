@@ -9,7 +9,26 @@ ja:
          for_sale: "販売中"
          sales_stop: "販売停止中"
   activerecord:
+    models:
+      item: "商品"
+    attributes:
+      item:
+        price: "価格"
+        name: "商品名"
+        introduction: "商品説明"
+        image: "画像"
     errors:
+      models:
+        item:
+          attributes:
+            price:
+              blank: "を入力してください"
+            name:
+              blank: "を入力してください"
+            introduction:
+              blank: "を入力してください"
+            image:
+              blank: "を選択してください"
       messages:
         record_invalid: 'バリデーションに失敗しました： %{errors}'
 
@@ -93,7 +112,7 @@ ja:
       month: 月
       year: 年
   errors:
-    format: "%{attraibute}%{message}"
+    format: "%{attribute} %{message}"
     messages:
       accepted: を受諾してください
       blank:: を入力してください

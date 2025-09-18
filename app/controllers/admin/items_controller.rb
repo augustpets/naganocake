@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   def new
-    @item = Item.new
+    @item = Item.new(is_active: true)
   end
 
   def create
