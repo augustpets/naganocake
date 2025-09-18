@@ -1,14 +1,23 @@
 <h1>注文情報入力画面/会員側p.8</h1>
 
-<h3>注文情報入力<h3>
-
 <div class="container">
-  <div class="row d-flex align-self-left">
-    <div class="col-11">
-    <%= form_with model: @order, url: confirm_public_orders_path, method: :post do |f| %>
-      <p>支払方法</p>
+  <div class="row">
+    <div class="col-md-12">
 
-      <p>お届け先</p>
+    <h3>注文情報入力<h3>
+    <%= form_with model: @order, url: confirm_public_orders_path, method: :post do |f| %>
+      <h4>支払方法</h4>
+        <ul>
+          <li>クレジットカード</li>
+          <li>銀行振込</li>
+        </ul>
+      
+      <p>お届け先</hp>
+        <ul>
+          <li>ご自身の住所</li>
+          <li>登録済住所から選択</li>
+          <li>新しいお届け先</li>
+        </li>
 
       <%= f.label :postal_code, "郵便番号(ハイフンなし)"%>
       <%= f.text_field :postal_code%>
