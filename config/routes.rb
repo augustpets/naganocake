@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
 }
   namespace :public do
-    resources :customers, only: [:show, :edit, :confirm]
+    resources :customers, only: [:show, :edit, :update, :confirm]
   end
 
 

@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2025_09_17_055205) do
     t.integer "status", null: false
     t.integer "payment_method", null: false
     t.integer "shipping_cost", null: false
+  end
 
   create_table "items", force: :cascade do |t|
     t.integer "genre_id"
