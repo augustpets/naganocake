@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'orders/create'
     get 'orders/index'
     get 'orders/show'
+    resources :items, only: [:index, :show]
   end
 
   root "homes#top"
