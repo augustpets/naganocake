@@ -16,6 +16,7 @@ class Public::CustomersController < ApplicationController
 
 
   def confirm
+    
   end
 
   private
