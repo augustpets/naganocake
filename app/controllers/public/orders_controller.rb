@@ -4,8 +4,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @cart_items = CartItem.where(member_id: current_member.id)
-    @postage = 800
+
+    @shipping_cost = 800
     @selected_pay_method = params[:order][:pey_method]
   end
 end
@@ -14,6 +14,10 @@ end
   end
 
   def create
+    @order = Order.new
+    @order.customer_id = current_member.id
+    @order.shipping_cost = 800
+    
   end
 
   def index

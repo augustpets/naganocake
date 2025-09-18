@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
-        get 'confirm'
+        post 'confirm'
         get 'thanks'
       end
     end
