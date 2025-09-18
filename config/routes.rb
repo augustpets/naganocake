@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   namespace :public do
     resources :customers, only: [:show, :edit, :update] do
       member do
-        post :confirm
+        get :unsubscribe
+        patch :withdraw
       end
     end
   end
