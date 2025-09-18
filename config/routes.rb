@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'orders/show'
+  end
   namespace :public do
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
