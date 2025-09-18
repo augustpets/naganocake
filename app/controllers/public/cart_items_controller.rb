@@ -3,6 +3,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
+    @cart_item = current_customer.cart_item.find(params[:id])
+    @cart_item
   end
 
   def destroy
@@ -12,6 +14,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+    @cart_item = @item_id
   end
 
   private

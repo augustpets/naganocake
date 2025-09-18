@@ -1,5 +1,9 @@
 current directory: /home/ec2-user/environment/naganocake/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.18.6/ext/bootsnap
+<<<<<<< HEAD
 /home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250917-1081961-mo5gr3.rb extconf.rb
+=======
+/home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250918-1225075-xfqno7.rb extconf.rb
+>>>>>>> develop2
 checking for fdatasync() in unistd.h... yes
 checking for whether -D_GNU_SOURCE is accepted as CPPFLAGS... yes
 checking for whether -O3 is accepted as CFLAGS... yes
@@ -16,4 +20,8 @@ linking shared-object bootsnap/bootsnap.so
 
 current directory: /home/ec2-user/environment/naganocake/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.18.6/ext/bootsnap
 make DESTDIR\= install
+<<<<<<< HEAD
 /usr/bin/install -c -m 0755 bootsnap.so ./.gem.20250917-1081961-lugtsr/bootsnap
+=======
+/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20250918-1225075-ok06lt/bootsnap
+>>>>>>> develop2

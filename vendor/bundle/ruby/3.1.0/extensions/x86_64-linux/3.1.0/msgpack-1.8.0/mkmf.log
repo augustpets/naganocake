@@ -92,7 +92,11 @@ checked program was:
 /* end */
 
 LD_LIBRARY_PATH=.:/home/ec2-user/.rbenv/versions/3.1.2/lib "gcc -o conftest -I/home/ec2-user/.rbenv/versions/3.1.2/include/ruby-3.1.0/x86_64-linux -I/home/ec2-user/.rbenv/versions/3.1.2/include/ruby-3.1.0/ruby/backward -I/home/ec2-user/.rbenv/versions/3.1.2/include/ruby-3.1.0 -I.    -std=gnu17  -fPIC conftest.c  -L. -L/home/ec2-user/.rbenv/versions/3.1.2/lib -Wl,-rpath,/home/ec2-user/.rbenv/versions/3.1.2/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/home/ec2-user/.rbenv/versions/3.1.2/lib -L/home/ec2-user/.rbenv/versions/3.1.2/lib -lruby  -lm  -lc"
+<<<<<<< HEAD
 /usr/bin/ld: /tmp/ccHM1BgT.o: in function `t':
+=======
+/usr/bin/ld: /tmp/ccBCfDmm.o: in function `t':
+>>>>>>> develop2
 conftest.c:(.text+0x6b): undefined reference to `rb_hash_new_capa'
 collect2: error: ld returned 1 exit status
 checked program was:

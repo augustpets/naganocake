@@ -1,5 +1,9 @@
 current directory: /home/ec2-user/environment/naganocake/vendor/bundle/ruby/3.1.0/gems/nokogiri-1.18.9/ext/nokogiri
+<<<<<<< HEAD
 /home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250917-1081961-7kaxhc.rb extconf.rb
+=======
+/home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250918-4899-xbr4c5.rb extconf.rb
+>>>>>>> develop2
 checking for whether -std=c99 is accepted as CFLAGS... yes
 checking for whether -Wno-declaration-after-statement is accepted as CFLAGS... yes
 checking for whether -O2 is accepted as CFLAGS... yes
@@ -143,5 +147,9 @@ Cleaning files only used during build.
 
 current directory: /home/ec2-user/environment/naganocake/vendor/bundle/ruby/3.1.0/gems/nokogiri-1.18.9/ext/nokogiri
 make DESTDIR\= install
+<<<<<<< HEAD
 /usr/bin/install -c -m 0755 nokogiri.so ./.gem.20250917-1081961-7aodkm/nokogiri
+=======
+/usr/bin/install -c -m 0755 nokogiri.so ./.gem.20250918-4899-nphkah/nokogiri
+>>>>>>> develop2
 installing nokogiri libraries
