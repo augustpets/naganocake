@@ -5,7 +5,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11">
-    <%= form_with model: @order, method: :post do |f| %>
+    <%= form_with model: @order, url: confirm_public_orders_path, method: :get do |f| %>
       <p>支払方法</p>
 
       <p>お届け先</p>
@@ -16,7 +16,8 @@
       <%= f.text_area :address %>
       <%= f.label :name, "宛名" %>
       <%= f.text_field :name %>
-      <%= f.submit "確認画面へ進む" %>
+      <%= link_to "確認画面へ進む",  %>
+    <% end %>
 
 
 
