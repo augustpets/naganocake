@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get 'orders/show'
   end
   namespace :public do
+    resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
         post 'confirm'
@@ -26,7 +27,8 @@ Rails.application.routes.draw do
   namespace :public do
     resources :customers, only: [:show, :edit, :update] do
       member do
-        post :confirm
+        get :unsubscribe
+        patch :withdraw
       end
     end
   end
