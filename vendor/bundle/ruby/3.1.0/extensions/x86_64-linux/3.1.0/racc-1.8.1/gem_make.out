@@ -1,5 +1,9 @@
 current directory: /home/ec2-user/environment/naganocake/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+<<<<<<< HEAD
+/home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250917-1081961-fkjx4e.rb extconf.rb
+=======
 /home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250918-1225075-7wadmu.rb extconf.rb
+>>>>>>> develop2
 creating Makefile
 
 current directory: /home/ec2-user/environment/naganocake/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
@@ -12,4 +16,8 @@ linking shared-object racc/cparse.so
 
 current directory: /home/ec2-user/environment/naganocake/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
 make DESTDIR\= install
+<<<<<<< HEAD
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20250917-1081961-vjo521/racc
+=======
 /usr/bin/install -c -m 0755 cparse.so ./.gem.20250918-1225075-xgau7s/racc
+>>>>>>> develop2
