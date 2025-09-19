@@ -1,0 +1,8 @@
+
+  <%= image_tag @item.get_image %>
+  <%= @item.name %>
+  <%= @item.introduction %>
+  <%= number_to_currency(@item.price_in_tax, unit: "￥", format: "%u%n", precision: 0) %>
+  <%= select_tag :amount, options_for_select(1..5) %>
+  <%= submit_tag "カートに追加" %>
+
