@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
-  has_many :items, through: :order_items
-  has_many :order_items
+  has_many :items, through: :order_details
+  has_many :order_details
 
   validates :postal_code, presence: true
   validates :address, presence: true

@@ -2,7 +2,13 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_order
 
+  def index
+    @orders = Order.page(params[:page])
+  end
+
   def show
+    @order = Order.find(params[:id])
+    @orders = @order.orders.page(params[:page])
   end
 
   def update
