@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   namespace :public do
+    resources :customers, only: [:show, :edit, :update] do
+      member do
+        get :unsubscribe
+        patch :withdraw
+      end
+    end
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
@@ -30,18 +36,10 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
-  namespace :public do
-    resources :customers, only: [:show, :edit, :update] do
-      member do
-        get :unsubscribe
-        patch :withdraw
-      end
-    end
-  end
-
 
   namespace :admin do
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
