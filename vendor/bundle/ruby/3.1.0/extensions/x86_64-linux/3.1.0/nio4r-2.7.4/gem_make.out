@@ -1,5 +1,9 @@
 current directory: /home/ec2-user/environment/naganocake/vendor/bundle/ruby/3.1.0/gems/nio4r-2.7.4/ext/nio4r
+<<<<<<< HEAD
+/home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250917-1081961-qz250m.rb extconf.rb
+=======
 /home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250918-1225075-j43gfq.rb extconf.rb
+>>>>>>> develop2
 checking for unistd.h... yes
 checking for rb_io_descriptor()... yes
 checking for linux/aio_abi.h... yes
@@ -29,4 +33,8 @@ linking shared-object nio4r_ext.so
 
 current directory: /home/ec2-user/environment/naganocake/vendor/bundle/ruby/3.1.0/gems/nio4r-2.7.4/ext/nio4r
 make DESTDIR\= install
+<<<<<<< HEAD
+/usr/bin/install -c -m 0755 nio4r_ext.so ./.gem.20250917-1081961-w7tr87
+=======
 /usr/bin/install -c -m 0755 nio4r_ext.so ./.gem.20250918-1225075-4af6ub
+>>>>>>> develop2
