@@ -2,7 +2,7 @@
   <div class='row'>
     <% if @cart_items.blank? %>
       <div class='col-md-8 text-center'>
-        <h3>カート内商品はありません</h3>
+        <h3>カート内商品はございません</h3>
       </div>
     <% else %>
       <div class='col text-start'>
@@ -22,10 +22,11 @@
           </tr>
         </thead>
         <tbody>
-          <% items.each do |cart_item| %>
-            <tr>
-              <td>
-                
+          <% @cart_items.each do |cart_item| %>
+            <tr id="cart_item_<%= cart_item.id %>">
+              <td class="align-middle">
+                <%= image_tag cart_item.item.get_image(100, 100), class: "p-2 image" %>
+                <%= cart_item.item.name %>
               </td>
               <td>
                 <%= cart_item.item.with_tax_price%>
