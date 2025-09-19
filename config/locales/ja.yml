@@ -113,6 +113,7 @@ ja:
       year: 年
   errors:
     format: "%{attribute} %{message}"
+
     messages:
       accepted: を受諾してください
       blank:: を入力してください
