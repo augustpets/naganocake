@@ -29,38 +29,46 @@
                 <%= cart_item.item.name %>
               </td>
               <td>
-                <%= cart_item.item.with_tax_price%>
+                <%= cart_item.item.price_in_tax%>円
               </td>
               <td>
-
-                 
+                <%= form_with(model: cart_item, url: cart_item_path(cart_item), method: :patch, local: false, class: "text-center") do |form| %>
+                  <%= form.hidden_field :customer_id, :value => current_customer.id %>
+                  <%= form.hidden_field :item_id, :value => cart_item.item.id %>
+                  <%= form.select :amount, *[1..50],{}, class: "form-select-sm" %>
+                  <%#= form.submit "変更", class: "btn change_button", style: "background-color: #D5CEA3;" %>
+                <% end %>                 
               </td>
               <td>
-                <%= cart_item.subtotal%>
+                <%= cart_item.subtotal%>円
               </td>
               <td>
-                <%= link_to "削除する", "#", class: 'btn btn-sm btn-danger' %>
+                <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: "本当に削除しますか？"}  %>
               </td>
               
             </tr>
           <% end %>
         </tbody>
       </table>
-
-      <div class='col text-start'>
-        <%= link_to "買い物を続ける", "#", class: 'btn btn-sm btn-primary' %>
-      </div>
-      <div class='col-md-2'>
-        <table class='table table-hover table-bordered', style='border-color: #3C2A21;'>
-          <tbody>
-            <tr align='center'>
-              <th style="background-color: raba(60, 42, 33, 0.5);">合計金額</th>
-              <td class="text-center">
-                0000000
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="row roww-content-middle mt-3">
+        <div class='col-md-4'>
+          <%= link_to "買い物を続ける", root_path, class: 'btn btn-sm btn-primary' %>
+        </div>
+        <div class='col-md-2'>
+          <table class='table table-hover table-bordered', style='border-color: #3C2A21;'>
+            <tbody>
+              <tr align='center'>
+                <th style="background-color: raba(60, 42, 33, 0.5);">合計金額</th>
+                <td class="text-center total-area">
+                  <%= render 'total', total_amount: @total_amount %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row mt- row-content">
+          <div class="col-md-3 text-center">
+            <%= link_to '情報入力へ進む', new_order_path, class: "btn", style: "background-color: #1A120B; color: #E5E5CB;" %>
       </div>
     <% end %>
   </div>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :public do
+    resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
         post 'confirm'
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
-    resources :cart_items, only: [:index, :create, :destroy] do
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
       delete :destroy_all, on: :collection
     end
   end
@@ -29,8 +30,14 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
-
-  resources :customers, only: [:show]
+  namespace :public do
+    resources :customers, only: [:show, :edit, :update] do
+      member do
+        get :unsubscribe
+        patch :withdraw
+      end
+    end
+  end
 
 
   namespace :admin do

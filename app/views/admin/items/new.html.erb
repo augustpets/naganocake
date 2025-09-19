@@ -1,27 +1,16 @@
 <h1>商品新規登録</h1>
+
+  <% if @item.errors.any? %>
+    <%= @item.errors.count %>件のエラーが発生しました。
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
 <%= form_with model: [:admin,@item], local: true do |f| %>
-  <h4>商品画像</h4>
-    <%= f.file_field :image, accept: "image/*" %>
-
-  <h4>商品名</h4>
-    <%= f.text_field :name %>
-
-  <h4>商品説明</h4>
-    <%= f.text_area :introduction %>
-
-  <h4>ジャンル</h4>
-
-
-  <h4>税抜金額</h4>
-    <%= f.text_field :price %>
-
-
-  <h4>販売ステータス</h4>
-    <%= f.radio_button :is_active, Item.is_actives.key(0) %>
-    <%= f.label :is_active_for_sale, Item.is_actives_i18n[:for_sale] %>
-
-    <%= f.radio_button :is_active, Item.is_actives.key(1) %>
-    <%= f.label :is_active_sales_stop, Item.is_actives_i18n[:sales_stop] %>
+<%= render 'form', item: @item, f: f %>
 
   <%= f.submit "新規登録" %>
 <% end %>
