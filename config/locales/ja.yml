@@ -8,6 +8,13 @@ ja:
        is_active:
          for_sale: "販売中"
          sales_stop: "販売停止中"
+    order_detail:
+      making_status:
+        cannot_start: "製作不可"
+        wating_for_make: "製作待ち"
+        in_production: "製作中"
+        complete: "製作完了"
+
   activerecord:
     errors:
       messages:
