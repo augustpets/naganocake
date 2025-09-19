@@ -20,12 +20,12 @@ class Public::OrdersController < ApplicationController
     # @total_payment = @shipping_cost + @cart_item_praice
     # @address = params[:order][:address]
     # case @address
-    # when "custmer_address"
-      # @selected_address = current_custmer.postal_code + " " + current_custmer.address + " " + current_custmer.family_name + current_custmer.first_name
+    # when "customer_address"
+      # @selected_address = current_customer.postal_code + " " + current_customer.address + " " + current_cust0mer.family_name + current_cust0mer.first_name
     # when "registered_address"
       # unless params[:order][:registered_address_id] == ""
         # selected = Address.find(params[:order][:registered_address_id])
-        # @selected_address = current_custmer.postal_code + " " + selected_address + " " + selected.name
+        # @selected_address = current_customer.postal_code + " " + selected_address + " " + selected.name
       # else
         # render :new
     # end
@@ -44,7 +44,7 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new
-    @order.customer_id = current_custmer.id
+    @order.customer_id = current_customer.id
     # @order.shipping_cost = 800
     # @cart_items = CartItem.where(customer_id: current_customer.id)
     # ary = []
@@ -96,7 +96,7 @@ class Public::OrdersController < ApplicationController
   # end
   # end
   def index
-    @orders = Order.where(member_id: current_member.id).order(created_at: :desc).
+    @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
 
   def show
@@ -105,4 +105,4 @@ class Public::OrdersController < ApplicationController
   end
 
   end
-end
+
