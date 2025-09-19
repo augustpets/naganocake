@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :public do
+    resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
         post 'confirm'
