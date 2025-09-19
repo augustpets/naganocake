@@ -1,0 +1,16 @@
+<h2>商品編集</h2>
+
+<% if @item.errors.any? %>
+  <%= @item.errors.count %>件のエラーが発生しました。
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: [:admin,@item], local: true do |f| %>
+<%= render 'form', item: @item, f:f %>
+
+<%= f.submit "編集を保存" %>
+<% end %>
