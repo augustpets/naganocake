@@ -15,7 +15,26 @@ ja:
       preparing: "発送準備中"
       shipped: "発送済み"
   activerecord:
+    models:
+      item: "商品"
+    attributes:
+      item:
+        price: "価格"
+        name: "商品名"
+        introduction: "商品説明"
+        image: "画像"
     errors:
+      models:
+        item:
+          attributes:
+            price:
+              blank: "を入力してください"
+            name:
+              blank: "を入力してください"
+            introduction:
+              blank: "を入力してください"
+            image:
+              blank: "を選択してください"
       messages:
         record_invalid: 'バリデーションに失敗しました： %{errors}'
 
@@ -99,7 +118,8 @@ ja:
       month: 月
       year: 年
   errors:
-    format: "%{attribute}%{message}"
+    format: "%{attribute} %{message}"
+
     messages:
       accepted: を受諾してください
       blank:: を入力してください

@@ -1,0 +1,10 @@
+<h2>商品一覧</h2><h4>全<%= @items.count %>件</h4>
+
+<% @items.each do |item| %>
+  <%= link_to public_item_path(item.id) do %>
+    <%= image_tag item.get_image %>
+  <% end %>
+  <%= item.name %>
+  <%= number_to_currency(item.price_in_tax, unit: "￥", format: "%u%n", precision: 0) %>
+<% end %>
+<%= paginate @items %>
