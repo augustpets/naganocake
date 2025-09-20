@@ -3,6 +3,7 @@ class Admin::OrdersController < ApplicationController
   before_action :set_order
 
   def index
+    @order = Order.all.includes(:customer)
     @orders = Order.page(params[:page])
   end
 
