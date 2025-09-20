@@ -9,19 +9,7 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2025_09_17_090122) do
-=======
-
-ActiveRecord::Schema.define(version: 2025_09_17_055205) do
-
->>>>>>> develop2
-
-=======
-ActiveRecord::Schema.define(version: 2025_09_17_055205) do
->>>>>>> develop2
+ActiveRecord::Schema.define(version: 2025_09_19_045131) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -92,17 +80,10 @@ ActiveRecord::Schema.define(version: 2025_09_17_055205) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
-
-  create_table "orders", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "customer_id", null: false
-    t.string "postal_code", null: false
-    t.string "address", null: false
-    t.string "name", null: false
-    t.integer "total_payment", null: false
-    t.integer "status", null: false
-    t.integer "payment_method", null: false
-    t.integer "shipping_cost", null: false
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -111,23 +92,6 @@ ActiveRecord::Schema.define(version: 2025_09_17_055205) do
     t.text "introduction"
     t.integer "price"
     t.boolean "is_active"
-
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "customer_id", null: false
-    t.string "postal_code", null: false
-    t.string "address", null: false
-    t.string "name", null: false
-    t.integer "total_payment", null: false
-    t.integer "status", null: false
-    t.integer "payment_method", null: false
-    t.integer "shipping_cost", null: false
-<<<<<<< HEAD
-=======
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -152,7 +116,6 @@ ActiveRecord::Schema.define(version: 2025_09_17_055205) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
->>>>>>> develop2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
