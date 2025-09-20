@@ -6,6 +6,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    @order = Order.new(order_params)
     # @cart_items = CartItem.where(customer_id: current_customer.id)
     # @shipping_cost = 800
     # @selected_payment_method = params[:order][:peyment_method]
@@ -43,8 +44,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new
     @order.customer_id = current_customer.id
+    @order = Order.new(order_params)
+    if @order.save
+      redirect_to thanks_public_orders_path
+    else
+      render :newend
+    end
     # @order.shipping_cost = 800
     # @cart_items = CartItem.where(customer_id: current_customer.id)
     # ary = []
@@ -102,6 +108,12 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_datails = OrderDetail.where(order_id: @order.id)
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:name, :address, :payment_method, :postal_code)
   end
 
   end
