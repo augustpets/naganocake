@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
   namespace :admin do
+
     get 'homes/top', to: 'homes#top'
   end
 
+
+    get 'orders/show'
+  end
+
   namespace :public do
+    resources :customers, only: [:show, :edit, :update] do
+      member do
+        get :unsubscribe
+        patch :withdraw
+      end
+    end
+    resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
         post 'confirm'
@@ -12,8 +24,17 @@ Rails.application.routes.draw do
     end
   end
 
+  
+  
   root "homes#top"
   get "about", to: "homes#about", as: "about"
+
+
+  scope module: :public do
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+      delete :destroy_all, on: :collection
+    end
+  end
 
 
   devise_for :customers,skip: [:passwords], controllers: {
@@ -25,11 +46,14 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
 }
 
-  resources :customers, only: [:show]
-
-
   namespace :admin do
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
+
+    resources :genres, only:[:index, :create, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+
+    resources :orders, only: [:show, :update]
+
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
