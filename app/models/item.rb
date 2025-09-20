@@ -4,8 +4,22 @@ class Item < ApplicationRecord
   belongs_to :genre
   has_many :cart_items, dependent: :destroy
   has_many :order_details
-
-  enum is_active: {for_sale: 0, sales_stop: 1 }
-
   
+  validates :image, presence: true
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :genre_id, presence: true
+  validates :price, presence: true
+
+
+
+  def get_image
+    if image.attached?
+        image.variant(resize_to_limit: [width = 200, height = 200]).processed
+    end
+  end
+
+  def price_in_tax
+    (price * 1.1).floor
+  end
 end
