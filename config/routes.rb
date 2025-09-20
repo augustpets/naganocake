@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
 
-    get 'homes/top', to: 'homes#top'
-  end
-
+    root :to =>'homes#top'
 
     get 'orders/show'
   end
