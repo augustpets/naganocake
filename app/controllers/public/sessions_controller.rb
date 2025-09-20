@@ -2,6 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  # before_action :authenticate_customer!, except: [:top, :about]
   before_action :customer_state, only: [:create]
 
   # GET /resource/sign_in
