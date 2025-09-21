@@ -1,5 +1,11 @@
-<h2>ジャンル編集</h2>
-<%= form_with model:[:admin,@genre], local: true do |f| %>
-  <%= f.label :name, "ジャンル名" %><%= f.text_field :name %>
-  <%= f.submit "編集を保存する" %>
+<div class = " row px-5 ml-5 my-4">
+  <h2 class = "bg-light px-3">ジャンル編集</h2>
+</div>
+
+<%= form_with model: [:admin,@genre], local: true, class: "ml-3" do |f| %>
+  <div class= "mb-3 row d-flex flex-row align-items-baseline">
+    <%= f.label :name, "ジャンル名", class: "px-3" %>
+    <%= f.text_field :name, class: "form-control w-25 mr-2" %>
+    <%= f.submit "編集を保存", class: "btn btn-success px-3" %>
+  </div>
 <% end %>
