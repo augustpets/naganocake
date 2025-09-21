@@ -20,14 +20,14 @@ class Public::OrdersController < ApplicationController
      @cart_items_price = ary.sum
 
      @total_payment = @shipping_cost + @cart_items_price
-     @address = params[:order][:address]
-     case @address
+     @address_type = params[:order][:address_type]
+     case @address_type
      when "customer_address"
-       @selected_address = current_customer.postal_code + " " + current_customer.address + " " + current_customer.last_name + current_customer.first_name
+       @selected_address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
      when "registered_address"
        unless params[:order][:registered_address_id] == ""
          selected = Address.find(params[:order][:registered_address_id])
-         @selected_address = current_customer.postal_code + " " + selected_address + " " + selected.name
+         @selected_address = current_customer.postal_code.to_s + " " + selected_address.to_s + " " + selected.name.to_s
        else
          render :new
      end
@@ -67,8 +67,8 @@ class Public::OrdersController < ApplicationController
        @order.status = 1
      end
 
-    address = params[:order][:address]
-     case address
+    address_type = params[:order][:address]
+     case address_type
    when "customer_address"
      @order.postal_code = current_customer.postal_code
      @order.address = current_customer.address
