@@ -27,7 +27,7 @@ class Public::OrdersController < ApplicationController
      when "registered_address"
        unless params[:order][:registered_address_id] == ""
          selected = Address.find(params[:order][:registered_address_id])
-         @selected_address = current_customer.postal_code.to_s + " " + selected_address.to_s + " " + selected.name.to_s
+         @selected_address = selected.postal_code + " " + selected_address + " " + selected.name
        else
          render :new
      end
@@ -45,18 +45,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order.customer_id = current_customer.id
     @order = Order.new(order_params)
-    if @order.save
-      redirect_to thanks_public_orders_path
-    else
-      render :new
-    end
-     @order.shipping_cost = 800
-     @cart_items = CartItem.where(customer_id: current_customer.id)
-     ary = []
-     @cart_items.each do |cart_item|
-       ary << cart_item.item.price*cart_item.quantity
+    @order.customer_id = current_customer.id
+    @order.shipping_cost = 800
+    
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    ary = []
+    @cart_items.each do |cart_item|
+      ary << cart_item.item.price*cart_item.quantity
     end
      @cart_items_price = ary.sum
      @order.total_payment = @order.shipping_cost + @cart_items_price
@@ -72,7 +68,7 @@ class Public::OrdersController < ApplicationController
    when "customer_address"
      @order.postal_code = current_customer.postal_code
      @order.address = current_customer.address
-     @order.name = current_customer.last_name_name + current_customer.first_name
+     @order.name = current_customer.last_name + current_customer.first_name
    when "registered_address"
      Address.find(params[:order][:registered_address_id])
      selected = Address.find(params[:order][:registered_address_id])
@@ -84,6 +80,7 @@ class Public::OrdersController < ApplicationController
      @order.address = params([:order][:new_address])
      @order.name = params([:order][:new_name])
    end
+   
 
    if @order.save
      if @order.status == 1
@@ -92,7 +89,7 @@ class Public::OrdersController < ApplicationController
        end
      else
        @cart_items.each do |cart_item|
-         OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, pricre: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
+         OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
        end
      end
      @cart_items.destroy_all
@@ -108,7 +105,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_datails = OrderDetail.where(order_id: @order.id)
+    @order_details = OrderDetail.where(order_id: @order.id)
   end
 
   private
