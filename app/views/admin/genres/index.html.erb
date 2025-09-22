@@ -1,0 +1,42 @@
+<div class = "row px-5 ml-5 my-4">
+  <div class = "bg-light px-3">
+    <h2>ジャンル一覧・追加</h2>
+
+    <% if @genre.errors.any? %>
+      <%= @genre.errors.count %>件のエラーが発生しました。
+        <ul>
+          <% @genre.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+    <% end %>
+  </div>
+</div>
+
+<%= form_with model: [:admin,@genre], local:true, class: "ml-3" do |f| %>
+  <div class= "mb-3 row d-flex flex-row align-items-baseline">
+    <%= f.label :name, "ジャンル名", class: "px-3" %>
+    <%= f.text_field :name, class: "form-control w-25 mr-2" %>
+  <%= f.submit "新規登録", class: "btn btn-success px-4" %>
+  </div>
+  <% end %>
+</div>
+
+<table class="table table-sm ml-3 col-4">
+  <thead>
+    <tr>
+      <th class= "table-secondary">ジャンル</th>
+      <th class= "table-secondary"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @genres.each do |genre| %>
+    <tr>
+      <td><%= genre.name %></td>
+      <td><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-success" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

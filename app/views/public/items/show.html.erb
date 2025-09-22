@@ -1,0 +1,15 @@
+  <div class = "row mt-5">
+    <div class = "col-3 text-center">
+      <%= image_tag @item.get_image %>
+    </div>
+    <dl class = "row col-8 pl-2 d-flex flex-column">
+      <dt><%= @item.name %></dt>
+      <dd class = "w-25 text-wrap"><%= @item.introduction %></dd>
+      <dt class ="mt-4"><%= number_to_currency(@item.price_in_tax, unit: "￥", format: "%u%n", precision: 0) %></dt>
+      <div class ="d-flex flex-row mt-5">
+        <%= select_tag :amount, options_for_select(1..5), class: "form-control w-25" %>
+        <%= submit_tag "カートに追加", class: "btn btn-success ml-5" %>
+      </div>
+    </dl>
+  </div>
+
