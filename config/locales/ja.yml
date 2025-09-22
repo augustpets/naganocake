@@ -8,6 +8,21 @@ ja:
        is_active:
          for_sale: "販売中"
          sales_stop: "販売停止中"
+
+    order_detail:
+      making_status:
+        cannot_start: "製作不可"
+        wating_for_make: "製作待ち"
+        in_production: "製作中"
+        complete: "製作完了"
+
+    status:
+      waiting: "入金待ち"
+      paid_up: "入金確認"
+      production: "製作中"
+      preparing: "発送準備中"
+      shipped: "発送済み"
+      
   activerecord:
     models:
       item: "商品"
@@ -151,7 +166,6 @@ ja:
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください
-
     template:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"
@@ -191,7 +205,6 @@ ja:
           thousand: 千
           trillion: 兆
           unit: ''
-
       format:
         delimiter: ''
         precision: 3
