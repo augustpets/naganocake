@@ -26,12 +26,16 @@ ja:
   activerecord:
     models:
       item: "商品"
+      genre: "ジャンル"
     attributes:
       item:
         price: "価格"
         name: "商品名"
         introduction: "商品説明"
         image: "画像"
+        genre: "ジャンル"
+      genre:
+        name: "ジャンル名"
     errors:
       models:
         item:
@@ -44,6 +48,13 @@ ja:
               blank: "を入力してください"
             image:
               blank: "を選択してください"
+            genre:
+              blank: "を選択してください"
+
+        genre:
+          attributes:
+            name:
+              blank: "を入力してください"
       messages:
         record_invalid: 'バリデーションに失敗しました： %{errors}'
 
