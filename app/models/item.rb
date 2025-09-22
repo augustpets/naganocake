@@ -8,14 +8,13 @@ class Item < ApplicationRecord
   validates :image, presence: true
   validates :name, presence: true
   validates :introduction, presence: true
-  validates :genre_id, presence: true
   validates :price, presence: true
 
 
 
   def get_image
     if image.attached?
-        image.variant(resize_to_limit: [width = 200, height = 200]).processed
+        image.variant(resize_to_fill: [width = 300, height = 300]).processed
     end
   end
 
