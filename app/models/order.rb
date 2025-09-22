@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   has_many :items, through: :order_details
-  has_many :order_details
+  has_many :order_details, dependent: :destroy
   has_many :addresses
 
   validates :postal_code, presence: true
