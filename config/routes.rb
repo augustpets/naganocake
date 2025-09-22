@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+
+    root :to =>'homes#top'
+
+    get 'orders/show'
+  end
+
   namespace :public do
     resources :customers, only: [:show, :edit, :update] do
       member do
@@ -39,8 +46,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
+
     resources :genres, only:[:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
