@@ -7,8 +7,11 @@
       <dd class = "w-25 text-wrap"><%= @item.introduction %></dd>
       <dt class ="mt-4"><%= number_to_currency(@item.price_in_tax, unit: "￥", format: "%u%n", precision: 0) %></dt>
       <div class ="d-flex flex-row mt-5">
-        <%= select_tag :amount, options_for_select(1..5), class: "form-control w-25" %>
-        <%= submit_tag "カートに追加", class: "btn btn-success ml-5" %>
+        <%= form_with model:CartItem.new, url:cart_items_path, method: :post, local: true do |f| %>
+          <%= f.hidden_field :item_id, value:@item.id %>
+          <%= f.select :amount, options_for_select([['個数選択', '', { disabled: true, selected: true }]] + (1..5).map { |n| [n, n] }), {}, class: "form-select me-3", style: "width: 100px;" %>
+          <%= f.submit "カートに追加", class: "btn btn-success ml-5" %>
+        <% end %>
       </div>
     </dl>
   </div>
