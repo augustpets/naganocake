@@ -41,9 +41,7 @@
                 <%= cart_item.subtotal %>円
               </td>
               <td>
-                <%= link_to "削除する", cart_item_path(cart_item), method: :delete,
-                    class: "btn btn-sm btn-danger",
-                    data: { confirm: "本当に削除しますか？" } %>
+                <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "本当に削除しますか？" } %>
               </td>
             </tr>
           <% end %>
