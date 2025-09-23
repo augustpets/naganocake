@@ -1,1 +1,71 @@
-<h3>管理者・注文履歴詳細p.13</h3>
+<div class="container p-5">
+  <div class="row d-flex">
+    <div class="col-6 mx-2">
+      <h3><span class="gb-light">注文履歴詳細</span></h3>
+      <table class="table">
+        <% @orders.each do |order| %>
+          <tr>
+            <td>購入者</td>
+            <td><%= order.customer_name %>
+          </tr>
+          <tr>
+            <td>注文日</td>
+            <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <td>配送先</td>
+            <td><%= order.address %></td>
+          </tr>
+          <tr>
+            <td>支払方法</td>
+            <td>
+              <% if @selected_payment_method == "credit_card" %>
+                クレジットカード
+              <% else %>
+                銀行振込
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>注文ステータス</td>
+            <td>
+              <%= form_with(model: @order, url: admins_order_path, local: true, class: "form-row") do |f| %>
+                <%= f.select :order_status, Order.order_statuses_i18n.invert, {prompt:false}, class:"form-control form-control-sm clo-6" %>
+                <%= f.submit "更新" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+      <br>
+    <dic class="col mt-3">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>製造ステータス</th>
+          </tr>
+        </thead>
+        <% @cart_items.each do |cart_item| %>
+          <tbody>
+            <tr>
+              <td><%= cart_item.item.name %></td>
+               <td><%= cart_item.item.price %></td>
+               <td><%= cart_item.quantity %></td>
+               <td><%= cart_item.item.price*cart_item.quantity %></td>
+               <td></td>
+            </tr>
+          </tbody>
+         <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+

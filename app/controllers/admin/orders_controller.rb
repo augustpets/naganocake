@@ -1,20 +1,17 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_order
-
-  def index
-    @order = Order.all.includes(:customer)
-    @orders = Order.page(params[:page])
-  end
+  before_action :set_order, only: [:show, :update]
 
   def show
     @order = Order.find(params[:id])
-    @orders = @order.orders.page(params[:page])
+    @order_datails = @order.orders.page(params[:page])
   end
 
   def update
-    @order.update(order_params)
-    redirect_to admin_order_path(@order)
+    @order_detail = OrderDetail.find(params[:id])
+    @order_detail.update(making_status: params[:order_detail][:making_status])
+    update_order_status(@order_detail.order)
+    redirect_to  admin_order_path(@order_datail.order), notice: "更新に成功しました。"
   end
 
   private
@@ -24,6 +21,14 @@ class Admin::OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).parmit(:status)
+    params.require(:order).permit(:status)
   end
+
+  def update_order_status(order)
+    if order.order_details.completed.counted.count == order.order_details.count
+    order.update(status: "preparing")
+  elsif order.order_details.in_production.exists?
+    order.update(status: "making")
+  end
+end
 end
