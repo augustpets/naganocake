@@ -5,7 +5,7 @@
 <div class = "container mx-1">
   <div class= "row d-flex justify-content-center ml-3">
     <% @items.each do |item| %>
-      <div class="col-3 mb-4 text-start d-flex flex-column card card border-0">
+      <div class="col-3 mb-4 text-start d-flex flex-column card">
         <%= link_to public_item_path(item.id) do %>
           <%= image_tag item.get_image, class:"card-img-top" %>
         <% end %>

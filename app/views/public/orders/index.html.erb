@@ -1,12 +1,10 @@
-<h1>注文履歴一覧画面p.16</h1>
-
-<div class="container">
+<div class="container p-3">
   <div class="row">
     <div class="col-md-12">
       <h4><span class="bg-light">注文履歴一覧</span></h4>
 
-        <table class="table">
-          <thead class="thead-light">
+        <table class="table table-bordered">
+          <thead class ="thead-light">
             <tr>
               <th>注文日</th>
               <th>配送先</th>
@@ -19,11 +17,11 @@
           <tbody>
             <% @orders.each do |order| %>
               <tr>
+                <td><%= order.created_at.strftime("%Y/%m/%d") %></td>
+                <td><%= order.address %></td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td><%= order.total_payment %></td>
+                <td><%= order.status_i18n %></td>
                 <td><%= link_to "表示する", public_order_path(order), class: "btn btn-primary" %></td>
               </tr>
             <% end %>
