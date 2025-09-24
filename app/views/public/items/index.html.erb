@@ -1,11 +1,11 @@
-<div class = "row my-4 ml-5 d-flex align-items-baseline">
-  <h2>商品一覧</h2><h4>（全<%= Item.count %>件）</h4>
+<div class = "row my-4 col-4 d-flex justify-content-end align-items-baseline">
+  <h2 class = "bg-light pl-3" >商品一覧</h2><h4 class = "bg-light pt-2 pr-2">（全<%= Item.count %>件）</h4>
 </div>
 
-<div class = "container mx-1">
-  <div class= "row d-flex justify-content-center ml-3">
+<div class = "container w-100 ">
+  <div class= "row ">
     <% @items.each do |item| %>
-      <div class="col-3 mb-4 text-start d-flex flex-column card card border-0">
+      <div class="col-3 mb-3 text-start d-flex flex-column card border-0">
         <%= link_to public_item_path(item.id) do %>
           <%= image_tag item.get_image, class:"card-img-top" %>
         <% end %>
@@ -17,7 +17,7 @@
         </div>
       </div>
     <% end %>
-    <div>
+    <div class = "col-12 d-flex justify-content-center my-2">
       <%= paginate @items %>
     </div>
   </div>
