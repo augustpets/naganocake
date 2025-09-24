@@ -1,9 +1,23 @@
 @use '~bootstrap/scss/bootstrap';
 
+.custom-color {
+  background-color:  hsl(35.68deg 100% 92.75%);
+}
+
 .fs {
   font-size: 50px;
 }
 
 .font-weight {
   font-weight: 500;
+}
+
+.bg-gray {
+  background-color: #f5f5f5;
+}
+
+.custom-table,
+.custom-table th,
+.custom-table td {
+  border: 1px solid black !important;
 }
