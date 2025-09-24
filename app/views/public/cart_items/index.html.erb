@@ -1,19 +1,17 @@
-<div class='container px-5 px-sm-0'>
-  <div class='row'>
+<div class = "container w-100  my-4 d-flex flex-row justify-content-center">
+  <div class = "row align-item-baseline  d-flex justify-content-between w-75 my-3">
     <% if @cart_items.blank? %>
-      <div class='col-md-8 text-center'>
-        <h3>カート内商品はございません</h3>
+      <div class='col-md-12 text-center'>
+        <h2>カート内商品はございません</h2>
       </div>
     <% else %>
-      <div class='col text-start'>
-        ショッピングカート
+      <h2 class = "bg-light px-3">ショッピングカート</h2>
+      <div class='bg-left px-3'>
+        <%= link_to "カートを空にする",destroy_all_cart_items_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "本当にカートを空にしますか？"} %>
       </div>
-      <div class='col text-end'>
-        <%= link_to "カートを空にする",cart_item_destroy_all_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "本当にカートを空にしますか？"} %>
-      </div>
-      <table class='table table-hover table-bordered'>
+      <table class="table table-hover table-bordered align-middle">
         <thead>
-          <tr>
+          <tr style="background-color: rgba(60, 42, 33, 0.5);">
             <th>商品名</th>
             <th>単価(税込)</th>
             <th>数量</th>
@@ -23,55 +21,53 @@
         </thead>
         <tbody>
           <% @cart_items.each do |cart_item| %>
-            <tr id="cart_item_<%= cart_item.id %>">
-              <td class="align-middle">
-                <%= image_tag cart_item.item.get_image, class: "p-2" %>
+            <tr id="cart_item_<%= cart_item.id %>" class="align-middle">
+              <td class="text-start">
+                <%= image_tag cart_item.item.image.variant(resize_to_limit: [50, 50]).processed, class: "p-2" %>
                 <%= cart_item.item.name %>
               </td>
               <td>
-                <%= cart_item.item.price_in_tax%>円
+                <%= cart_item.item.price_in_tax %>円
               </td>
               <td>
-                <%= form_with(model: cart_item, url: cart_item_path(cart_item), method: :patch, local: false, class: "text-center") do |form| %>
-                  <%= form.hidden_field :customer_id, :value => current_customer.id %>
-                  <%= form.hidden_field :item_id, :value => cart_item.item.id %>
-                  <%= form.select :amount, (1..50).to-a, {}, class: "form-select-sm" %>
+                <%= form_with(model: cart_item, url: cart_item_path(cart_item), method: :patch, local: false, class: "d-inline-block") do |form| %>
+                  <%= form.hidden_field :customer_id, value: current_customer.id %>
+                  <%= form.hidden_field :item_id, value: cart_item.item.id %>
+                  <%= form.select :amount, (1..50).to_a, {}, class: "form-select-sm" %>
                   <%= form.submit "変更", class: "btn change_button", style: "background-color: #D5CEA3;" %>
-                <% end %>                 
+                <% end %>
               </td>
               <td>
-                <%= cart_item.subtotal%>円
+                <%= cart_item.subtotal %>円
               </td>
               <td>
-                <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: "本当に削除しますか？"}  %>
+                <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "本当に削除しますか？" } %>
               </td>
-              
             </tr>
           <% end %>
         </tbody>
       </table>
-      <div class="row roww-content-middle mt-3">
-        <div class='col-md-4'>
-          <%= link_to "買い物を続ける", root_path, class: 'btn btn-sm btn-primary' %>
+
+      <div class= "d-flex align-items-center justify-content-between my-3 px-3 w-100">
+        <div class= "text-start">
+          <%= link_to "買い物を続ける", root_path, class: "btn btn-sm btn-primary" %>
         </div>
-        <div class='col-md-2 text-end'>
-          <table class='table table-hover table-bordered', style='border-color: #3C2A21;'>
+        <div class="text-end">
+          <table class="table table-bordered d-inline-block mb-0" style="border-color: #3C2A21; width: auto;">
             <tbody>
-              <tr align='center'>
+              <tr>
                 <th style="background-color: rgba(60, 42, 33, 0.5);">合計金額</th>
-                <td>
-                  <%= render 'total', total_amount: @total_amount %>
-                </td>
+                <td><%= render 'total', total_amount: @total_amount %>円</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="row mt- row-content">
-          <div class="col-md-3 text-center">
-            <%= link_to '情報入力へ進む', new_order_path, class: "btn", style: "background-color: #1A120B; color: #E5E5CB;" %>
-          </div>
-        </div>
       </div>
+
+      <div class="w-100 text-center my-3">
+        <%= link_to '情報入力に進む', new_public_order_path,  class: "btn",  style: "background-color: #28A745; color: #E5E5CB;" %>
+      </div>
+
     <% end %>
   </div>
 </div>
