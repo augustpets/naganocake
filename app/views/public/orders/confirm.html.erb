@@ -22,8 +22,8 @@
                 <strong><%= cart_item.item.name %></strong>
               </td>
                <td><%= cart_item.item.price %></td>
-               <td><%= cart_item.quantity %></td>
-               <td><%= cart_item.item.price*cart_item.quantity %></td>
+               <td><%= cart_item.amount %></td>
+               <td><%= cart_item.item.price*cart_item.amount %></td>
             </tr>
           </tbody>
          <% end %>
@@ -42,7 +42,7 @@
         </tr>
         <tr>
           <td class="bg-light">請求金額</td>
-           <td><%= @total_pricr %></td>
+           <td><%= @total_payment %></td>
         </tr>
       </table>
     </div>
@@ -60,18 +60,19 @@
       <%= @selected_address %>
       <%= form_with url: public_orders_path, method: :post do %>
         <%= hidden_field_tag "order[payment_method]", @selected_payment_method %>
-        <%= hidden_field_tag "order[address_type]", @address_type %>
+        <%= hidden_field_tag "order[address]", @selected_address_type %>
         
-        <% if @address_type == "registered_address" %>
-          <%= hidden_field_tag "order[registered_address_id]", params[:order][:registered_address_id] %>
-        <% elsif @address_type == "new_address" %>
+        <% if @selected_address_type == "current_customer_address" %>
+          <%= hidden_field_tag "order[current_customer_address_id]", params[:order][:current_customer_address_id] %>
+        <% elsif @selected_address_type == "new_address" %>
           <%= hidden_field_tag "order[new_postal_code]", params[:order][:new_postal_code] %>
           <%= hidden_field_tag "order[new_address]", params[:order][:new_address] %>
           <%= hidden_field_tag "order[new_name]", params[:order][:new_name] %>
         <% end %>
+          <%= submit_tag "注文を確定する", class: "btn btn-success" %>
       <% end %>
 
-      <%= link_to "注文を確定する", thanks_public_orders_path, class: "btn btn-success" %>
+      <%#= link_to "注文を確定する", thanks_public_orders_path, class: "btn btn-success" %>
     </div>
 
 

@@ -13,30 +13,32 @@ class Public::OrdersController < ApplicationController
      @cart_items = CartItem.where(customer_id: current_customer.id)
      @shipping_cost = 800
      @selected_payment_method = params[:order][:payment_method]
+     @selected_shipping_method = params[:order][:shipping_method]
+     @selected_address_type = params[:order][:address]
 
      ary = []
      @cart_items.each do |cart_item|
-       ary << cart_item.item.price*cart_item.quantity
+       ary << cart_item.item.price*cart_item.amount
     end
 
      @cart_items_price = ary.sum
 
      @total_payment = @shipping_cost + @cart_items_price
-     @address_type = params[:order][:address_type]
-     case @address_type
-     when "current_address"
-       @selected.address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
+     #@address_type = params[:order][:address_type]
+     case @selected_address_type
+     when "customer_address"
+       @selected_address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
      when "current_customer_address"
        unless params[:order][:current_customer_address_id] == ""
          selected = Address.find(params[:order][:current_customer_address_id])
-         @selected.address = selected.postal_code + " " + selected.address + " " + selected.name
+         @selected_address = selected.postal_code + " " + selected.address + " " + selected.name
        else
          render :new
      end
 
      when "new_address"
        unless params[:order][:new_postal_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-         @second_address = params[:order][:new_postal_code].to_s + " " + params[:order][:new_address].to_s + " " + params[:order][:new_name].to_s
+         @selected_address = params[:order][:new_postal_code].to_s + " " + params[:order][:new_address].to_s + " " + params[:order][:new_name].to_s
        else
         render :new
        end
@@ -78,9 +80,9 @@ class Public::OrdersController < ApplicationController
      @order.address = selected.address
      @order.name = selected.name
    when "new_address"
-     @order.postal_code = params([:order][:new_postal_code])
-     @order.address = params([:order][:new_address])
-     @order.name = params([:order][:new_name])
+     @order.postal_code = params[:order][:new_postal_code]
+     @order.address = params[:order][:new_address]
+     @order.name = params[:order][:new_name]
    end
    
 
@@ -113,7 +115,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :address, :payment_method, :postal_code)
+    params.require(:order).permit(:name, :address, :payment_method, :postal_code, :current_customer_address_id, :shipping_method)
   end
 
 end
