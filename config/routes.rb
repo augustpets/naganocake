@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
     root :to =>'homes#top'
 
-    get 'orders/show'
+    resources :orders, only: [:index, :show, :update] do
+      resources :order_details, only: [:update]
+    end
   end
 
   namespace :public do
