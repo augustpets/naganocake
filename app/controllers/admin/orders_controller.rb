@@ -4,7 +4,7 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_datails = @order.orders.page(params[:page])
+    @order_details = @order.order_details.includes(:item)
   end
 
   def update

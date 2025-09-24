@@ -75,7 +75,7 @@ class Public::OrdersController < ApplicationController
           order_id: @order.id,
           item_id: cart_item.item.id,
           price: cart_item.item.price_in_tax,
-          quantity: cart_item.amount,
+          amount: cart_item.amount,
           making_status: 0
           )
         end      
