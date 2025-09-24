@@ -4,6 +4,8 @@ class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
     @order.shipping_cost = 800
+    @addresses = current_customer.addresses
+
   end
 
   def confirm
@@ -22,19 +24,19 @@ class Public::OrdersController < ApplicationController
      @total_payment = @shipping_cost + @cart_items_price
      @address_type = params[:order][:address_type]
      case @address_type
-     when "customer_address"
-       @selected_address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
-     when "registered_address"
-       unless params[:order][:registered_address_id] == ""
-         selected = Address.find(params[:order][:registered_address_id])
-         @selected_address = selected.postal_code + " " + selected_address + " " + selected.name
+     when "current_address"
+       @selected.address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
+     when "current_customer_address"
+       unless params[:order][:current_customer_address_id] == ""
+         selected = Address.find(params[:order][:current_customer_address_id])
+         @selected.address = selected.postal_code + " " + selected.address + " " + selected.name
        else
          render :new
      end
 
      when "new_address"
        unless params[:order][:new_postal_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-         @second_address = params[:order][:new_postal_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+         @second_address = params[:order][:new_postal_code].to_s + " " + params[:order][:new_address].to_s + " " + params[:order][:new_name].to_s
        else
         render :new
        end
@@ -69,9 +71,9 @@ class Public::OrdersController < ApplicationController
      @order.postal_code = current_customer.postal_code
      @order.address = current_customer.address
      @order.name = current_customer.last_name + current_customer.first_name
-   when "registered_address"
-     Address.find(params[:order][:registered_address_id])
-     selected = Address.find(params[:order][:registered_address_id])
+   when "current_customer_address"
+     Address.find(params[:order][:current_customer_address_id])
+     selected = Address.find(params[:order][:current_customer_address_id])
      @order.postal_code = selected.postal_code
      @order.address = selected.address
      @order.name = selected.name
