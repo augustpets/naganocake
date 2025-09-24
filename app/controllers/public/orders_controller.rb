@@ -70,12 +70,21 @@ class Public::OrdersController < ApplicationController
     end
 
     if @order.save
-      @cart_items.destroy_all
-      redirect_to thanks_public_orders_path
-    else
-      render :new
+      @cart_items.each do |cart_item|
+        OrderDetail.create!(
+          order_id: @order.id,
+          item_id: cart_item.item.id,
+          price: cart_item.item.price_in_tax,
+          quantity: cart_item.amount,
+          making_status: 0
+          )
+        end      
+        @cart_items.destroy_all
+        redirect_to thanks_public_orders_path
+      else
+        render :new
+      end
     end
-  end
 
 
   def index
