@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'addresses/index'
+    get 'addresses/create'
+    get 'addresses/edit'
+    get 'addresses/update'
+    get 'addresses/destroy'
+  end
   namespace :admin do
 
     root :to =>'homes#top'
@@ -20,6 +27,8 @@ Rails.application.routes.draw do
         get 'thanks'
       end
     end
+
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 
   
