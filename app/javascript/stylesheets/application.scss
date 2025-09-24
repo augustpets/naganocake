@@ -4,6 +4,14 @@
   background-color:  hsl(35.68deg 100% 92.75%);
 }
 
+.thead-color {
+  background-color: #deb887;
+}
+
+.tbody-color {
+  background-color: hsl(35.68deg 100% 92.75%);
+}
+
 .fs {
   font-size: 50px;
 }
@@ -20,4 +28,8 @@
 .custom-table th,
 .custom-table td {
   border: 1px solid black !important;
+}
+
+ .field_with_errors {
+  display: contents;
 }
