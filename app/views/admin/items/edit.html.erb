@@ -1,4 +1,4 @@
-<div class = "container">
+<div class = "container my-4">
   <div class = "row px-2">
     <div  class= "text-start bg-light ">
     <h2>商品編集</h2>
@@ -18,7 +18,7 @@
   <%= form_with model: [:admin,@item], local: true, class: "w-75" do |f| %>
     <%= render 'form', item: @item, f:f %>
     <div class="text-center">
-      <%= f.submit "編集を保存", class: "btn btn-success" %>
+      <%= f.submit "編集を保存", class: " mb-2 btn btn-success" %>
     </div>
   <% end %>
 </div>
