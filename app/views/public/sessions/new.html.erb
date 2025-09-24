@@ -1,36 +1,48 @@
-<div class="container m-4">
-  <h4 class="ml-5">ログイン</h4>
-  <h4 class="text-center my-4">会員の方はこちらからログイン</h4>
-  <div class="d-flex justify-content-center">
-    <%= form_with model: @customer, url: session_path(resource_name), local: true do |f| %>
-
-      <div class="form-row mb-3 ml-5">
-        <div class="col-form-label col-md-5">
-          メールアドレス
-        </div>
-        <div class="col-md-5">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-      </div>
-
-      <div class="form-row mb-3 ml-5">
-        <div class="col-form-label col-md-5">
-          パスワード
-        </div>
-        <div class="col-md-5">
-          <%= f.password_field :password, autocomplete: "current-password" %>
-        </div>
-      </div>
-
-      <div class="col-md-8 ml-5">
-        <%= f.submit "ログイン", class: "btn btn-primary" %>
-      </div>
-    <% end %>
+<div class='container W-100 my-3'>
+  <div class='row my-4 w-75'>
+    <div class="col-12">
+      <h4 class="bg-light px-3 mb-2 fs-6 text-center d-inline-block">
+        ログイン
+      </h4>
+    </div>
   </div>
-  <h4 class="text-center mt-5 mr-5">会員登録がお済みでない方</h4>
-  <div class="d-flex justify-content-center">
-    <div class="col-4 mt-4 ml-5">
-      <%= link_to "こちら", new_customer_registration_path %>から新規登録を行なってください。
+</div>
+<div class='container W-100 my-3'>
+  <div class='row my-4 w-75'>
+    <div class="col-12">
+      <h5 class="bg-light px-3 mb-3 fs-6 ml-5 text-center d-inline-block">会員の方はこちらからログイン</h5>
+      <div class="d-flex justify-content-center">
+        <%= form_with model: @customer, url: session_path(resource_name), local: true do |f| %>
+
+          <div class="form-row mb-3 ml-5">
+            <div class="col-form-label col-md-5">
+              メールアドレス
+            </div>
+            <div class="col-md-5">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
+            </div>
+          </div>
+
+          <div class="form-row mb-3 ml-5">
+            <div class="col-form-label col-md-5">
+              パスワード
+            </div>
+            <div class="col-md-5">
+              <%= f.password_field :password, autocomplete: "current-password" %>
+            </div>
+          </div>
+
+          <div class="col-md-8 ml-5">
+            <%= f.submit "ログイン", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+      <h5 class="bg-light px-3 mt-5 fs-6 ml-5 text-center d-inline-block">会員登録がお済みでない方</h5>
+      <div class="d-flex justify-content-center">
+        <div class="col-md-5 mt-2 ml-2">
+          <%= link_to "こちら", new_customer_registration_path %>から新規登録を行なってください。
+        </div>
+      </div>
     </div>
   </div>
 </div>
