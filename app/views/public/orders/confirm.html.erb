@@ -6,7 +6,7 @@
   <div class="row d-flex justify-content-center ml-3">
     <div class="col-md-7 offset-md-1 text-start d-flex-column">
       <table class="table table-bordered">
-        <thead class ="thead-light">
+        <thead class="thead-light">
           <tr>
             <th>商品名</th>
             <th>単価(税込)</th>
@@ -14,19 +14,19 @@
             <th>小計</th>
           </tr>
         </thead>
-         <% @cart_items.each do |cart_item| %>
+        <% @cart_items.each do |cart_item| %>
           <tbody>
             <tr>
               <td>
-                 <%= image_tag cart_item.item.image, size: "50x80" %>
+                <%= image_tag cart_item.item.image, size: "50x80" %>
                 <strong><%= cart_item.item.name %></strong>
               </td>
-               <td><%= cart_item.item.price %></td>
-               <td><%= cart_item.quantity %></td>
-               <td><%= cart_item.item.price*cart_item.quantity %></td>
+              <td><%= cart_item.item.price %></td>
+              <td><%= cart_item.amount %></td>
+              <td><%= cart_item.item.price * cart_item.amount %></td>
             </tr>
           </tbody>
-         <% end %>
+        <% end %>
       </table>
     </div>
     
@@ -34,15 +34,15 @@
       <table class="table">
         <tr>
           <td class="bg-light">送料</td>
-           <td><%= @shipping_cost %></td>
+          <td><%= @shipping_cost %></td>
         </tr>
         <tr>
           <td class="bg-light">商品合計</td>
-           <td><%= @cart_items_price %></td>
+          <td><%= @cart_items_price %></td>
         </tr>
         <tr>
           <td class="bg-light">請求金額</td>
-           <td><%= @total_pricr %></td>
+          <td><%= @total_payment %></td>
         </tr>
       </table>
     </div>
@@ -50,29 +50,34 @@
     <div class="col-10">
       <h4>支払方法</h4>
       <% if @selected_payment_method == "credit_card" %>
-         クレジットカード
+        クレジットカード
       <% else %>
-         銀行振込
+        銀行振込
       <% end %>
 
-  
       <h4>お届け先</h4>
-      <%= @selected_address %>
-      <%= form_with url: public_orders_path, method: :post do %>
+      <p><%= @selected_address %></p>
+
+      <%= form_with url: public_orders_path, method: :post do |f| %>
         <%= hidden_field_tag "order[payment_method]", @selected_payment_method %>
-        <%= hidden_field_tag "order[address_type]", @address_type %>
-        
-        <% if @address_type == "registered_address" %>
+        <%= hidden_field_tag "order[address]", @order_address %>
+        <%= hidden_field_tag "order[postal_code]", @order.postal_code %>
+        <%= hidden_field_tag "order[name]", @order.name %>
+
+
+        <% if @selected_address_type == "registered_address" %>
           <%= hidden_field_tag "order[registered_address_id]", params[:order][:registered_address_id] %>
-        <% elsif @address_type == "new_address" %>
+        <% elsif @selected_address_type == "new_address" %>
           <%= hidden_field_tag "order[new_postal_code]", params[:order][:new_postal_code] %>
           <%= hidden_field_tag "order[new_address]", params[:order][:new_address] %>
           <%= hidden_field_tag "order[new_name]", params[:order][:new_name] %>
         <% end %>
-      <% end %>
 
-      <%= link_to "注文を確定する", thanks_public_orders_path, class: "btn btn-success" %>
+        <%= f.submit "注文を確定する", class: "btn btn-success" %>
+      <% end %>
     </div>
+  </div>
+</div>
 
 
 
