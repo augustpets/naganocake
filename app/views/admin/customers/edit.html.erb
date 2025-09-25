@@ -1,9 +1,9 @@
 <div class='container W-100 my-3'>
   <div class='row my-4 w-75'>
     <div class="col-12">
-      <h2 class="bg-light px-3 text-start d-inline-block">
+      <h4 class="table-light thead-color px-3 text-start d-inline-block">
         <%= "#{@customer.last_name}#{@customer.first_name}" %>さんの会員情報編
-      </h2>
+      </h4>
 
         <%= form_with model: @customer, url: admin_customer_path(@customer), local: true do |f| %>
 

@@ -1,17 +1,21 @@
 <div class = "container w-100  my-4 d-flex flex-row justify-content-center">
-  <div class = "row align-item-baseline  d-flex justify-content-between w-75 my-3">
+  <div class = "row align-item-baseline  d-flex justify-content-between w-90 my-3">
     <% if @cart_items.blank? %>
-      <div class='col-md-12 text-center'>
-        <h2>カート内商品はございません</h2>
+      <div class='container' style="height: 100vh;">
+        <div class="row justify-content-center align-items-center" style="height: 100%;">
+          <div class="col-12 text-center">
+            <h1>カート内商品はございません</h1>
+          </div>
+        </div>
       </div>
     <% else %>
       <h2 class = "bg-light px-3">ショッピングカート</h2>
       <div class='bg-left px-3'>
         <%= link_to "カートを空にする",destroy_all_cart_items_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "本当にカートを空にしますか？"} %>
       </div>
-      <table class="table table-hover table-bordered align-middle">
-        <thead>
-          <tr style="background-color: rgba(60, 42, 33, 0.5);">
+      <table class="table table-bordered align-middle">
+        <thead class="table-light thead-color">
+          <tr>
             <th>商品名</th>
             <th>単価(税込)</th>
             <th>数量</th>
@@ -19,7 +23,7 @@
             <th></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="tbody-color">
           <% @cart_items.each do |cart_item| %>
             <tr id="cart_item_<%= cart_item.id %>" class="align-middle">
               <td class="text-start">
@@ -56,7 +60,7 @@
           <table class="table table-bordered d-inline-block mb-0" style="border-color: #3C2A21; width: auto;">
             <tbody>
               <tr>
-                <th style="background-color: rgba(60, 42, 33, 0.5);">合計金額</th>
+                <th class="table-light thead-color">合計金額</th>
                 <td><%= render 'total', total_amount: @total_amount %>円</td>
               </tr>
             </tbody>
