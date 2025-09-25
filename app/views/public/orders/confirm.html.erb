@@ -65,9 +65,9 @@
         <% if @address_type == "registered_address" %>
           <%= hidden_field_tag "order[registered_address_id]", params[:order][:registered_address_id] %>
         <% elsif @address_type == "new_address" %>
-          <%= hidden_field_tag "order[new_postal_code]", params[:order][:new_postal_code] %>
-          <%= hidden_field_tag "order[new_address]", params[:order][:new_address] %>
-          <%= hidden_field_tag "order[new_name]", params[:order][:new_name] %>
+          <%= hidden_field_tag "order[new_postal_code]", params[:order][:postal_code] %>
+          <%= hidden_field_tag "order[new_address]", params[:order][:address] %>
+          <%= hidden_field_tag "order[new_name]", params[:order][:name] %>
         <% end %>
         <div class="d-flex justify-content-center my-4">
           <%= submit_tag "注文を確定する", class: "btn btn-success" %>

@@ -24,23 +24,21 @@ class Public::OrdersController < ApplicationController
      @total_payment = @shipping_cost + @cart_items_price
      @address_type = params[:order][:address_type]
      case @address_type
-     when "current_address"
-       @selected.address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
-     when "current_customer_address"
-       unless params[:order][:current_customer_address_id] == ""
-         selected = Address.find(params[:order][:current_customer_address_id])
-         @selected.address = selected.postal_code + " " + selected.address + " " + selected.name
-       else
-         render :new
-     end
-
+     when "customer_address"
+       @selected_address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
+     when "registered_address"
+      # todo registeredアドレスの場合の記述をする
+       @selected_address = "test"
      when "new_address"
+      # todo new_address送られる内容を確認し修正する
        unless params[:order][:new_postal_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
+         @selected_address = "test"
          @second_address = params[:order][:new_postal_code].to_s + " " + params[:order][:new_address].to_s + " " + params[:order][:new_name].to_s
        else
         render :new
        end
      end
+
    end
 
   def thanks
@@ -71,25 +69,7 @@ class Public::OrdersController < ApplicationController
       @order.name        = params[:order][:new_name]
     end
 
-    address_type = params[:order][:address]
-     case address_type
-   when "customer_address"
-     @order.postal_code = current_customer.postal_code
-     @order.address = current_customer.address
-     @order.name = current_customer.last_name + current_customer.first_name
-   when "current_customer_address"
-     Address.find(params[:order][:current_customer_address_id])
-     selected = Address.find(params[:order][:current_customer_address_id])
-     @order.postal_code = selected.postal_code
-     @order.address = selected.address
-     @order.name = selected.name
-   when "new_address"
-     @order.postal_code = params([:order][:new_postal_code])
-     @order.address = params([:order][:new_address])
-     @order.name = params([:order][:new_name])
-   end
-   
-    if @order.save
+    if @order.save!
       @cart_items.each do |cart_item|
         OrderDetail.create!(
           order_id: @order.id,
