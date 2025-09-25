@@ -11,14 +11,15 @@ class Item < ApplicationRecord
   validates :price, presence: true
 
 
-
+#画像のサイズを変更するメソッド
   def get_image
     if image.attached?
         image.variant(resize_to_fill: [width = 300, height = 300]).processed
     end
   end
 
+#税込金額を算出するメソッド
   def price_in_tax
-    (price * 1.1).floor
+    (price * 1.1).floor  #(税抜価格✕税率).小数点以下切り捨てメソッド
   end
 end
