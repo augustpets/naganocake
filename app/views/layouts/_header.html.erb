@@ -3,7 +3,11 @@
     <%= link_to root_path do %>
       <%= image_tag "Logo_iOS.jpg", style: "width: 10%;" %>
     <% end %>
-    <span class="ml-2">ようこそ、<%= current_customer.last_name %>さん!</span>
+    <% unless controller_path.start_with?('admin/') %>
+      <span class="ml-2">
+        ようこそ、<%= customer_signed_in? ? current_customer.last_name : "ゲスト" %>さん!
+      </span>
+    <% end %>
   </div>
 
   <nav class="d-flex">
