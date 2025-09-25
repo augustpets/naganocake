@@ -29,9 +29,7 @@ class Public::OrdersController < ApplicationController
      when "registered_address"
       address = Address.find(params[:order][:registered_address_id])
       @selected_address = address.postal_code.to_s + " " + address.address.to_s + " " + address.name.to_s
-      # todo registeredアドレスの場合の記述をする
      when "new_address"
-      # todo new_address送られる内容を確認し修正する
       if params[:order][:postal_code].present? && params[:order][:address].present? && params[:order][:name].present?
          @selected_address = params[:order][:postal_code].to_s + " " + params[:order][:address].to_s + " " + params[:order][:name].to_s
        else
