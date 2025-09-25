@@ -1,18 +1,21 @@
 <div class = " row px-5 ml-5 my-4">
-  <div  class= "text-start">
-    <h2 class = "bg-light px-3">ジャンル編集</h2>
-    <% if @genre.errors.any? %>
+  <div  class= "text-center thead-color px-3">
+    <h2>ジャンル編集</h2>
+  </div>
+</div>
+
+  <% if @genre.errors.any? %>
+    <div class = "row ml-5 w-50 alert alert-danger d-flex flex-column">
       <%= @genre.errors.count %>件のエラーが発生しました。
         <ul>
           <% @genre.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
-    <% end %>
-  </div>
-</div>
+    </div>
+  <% end %>
 
-<%= form_with model: [:admin,@genre], local: true, class: "ml-3" do |f| %>
+<%= form_with model: [:admin,@genre], local: true, class: "ml-3 w-50" do |f| %>
   <div class= "mb-3 row d-flex flex-row align-items-baseline">
     <%= f.label :name, "ジャンル名", class: "px-3" %>
     <%= f.text_field :name, class: "form-control w-25 mr-2" %>

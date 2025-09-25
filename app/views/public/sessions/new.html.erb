@@ -3,7 +3,13 @@
     <div class="col-12">
       <h3 class="table-light thead-color px-3 mb-2 fs-6 text-center d-inline-block">
         ログイン
+      <% if flash[:alert] %>
+        <div class="alert alert-danger w-50">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
       </h3>
+
     </div>
   </div>
 </div>
