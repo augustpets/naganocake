@@ -1,5 +1,5 @@
 <div class="container my-3">
-  <h4 class="bg-light px-3 my-4 fs-6 text-start d-inline-block">マイページ</h4>
+  <h3 class="table-light thead-color px-3 my-4 fs-6 text-start d-inline-block">マイページ</h3>
 
   <div class="form-row mb-4">   
     <h4 class="col-form-label col-mb-4">
@@ -44,7 +44,7 @@
       配送先
     </h4>
     <div class="col-md-5 ml-3">
-      <%= link_to "一覧を見る", public_addresses_path(@addresses), class: "btn btn-primary" %>
+      <%= link_to "一覧を見る", public_addresses_path(@addresses), class: "btn btn-info" %>
     </div>
   </div>
   <div class="form-row mt-4 mb-4">
@@ -52,7 +52,7 @@
       注文履歴
     </h4>
     <div class="col-md-5 ml-3">
-      <%= link_to "一覧を見る", public_orders_path(@orders), class: "btn btn-primary" %>
+      <%= link_to "一覧を見る", public_orders_path(@orders), class: "btn btn-info" %>
     </div>
   </div>
 </div>
