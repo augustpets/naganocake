@@ -25,15 +25,15 @@ class Public::OrdersController < ApplicationController
      @address_type = params[:order][:address_type]
      case @address_type
      when "customer_address"
-       @selected_address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
+      @selected_address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
      when "registered_address"
+      address = Address.find(params[:order][:registered_address_id])
+      @selected_address = address.postal_code.to_s + " " + address.address.to_s + " " + address.name.to_s
       # todo registeredアドレスの場合の記述をする
-       @selected_address = "test"
      when "new_address"
       # todo new_address送られる内容を確認し修正する
-       unless params[:order][:new_postal_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-         @selected_address = "test"
-         @second_address = params[:order][:new_postal_code].to_s + " " + params[:order][:new_address].to_s + " " + params[:order][:new_name].to_s
+      if params[:order][:postal_code].present? && params[:order][:address].present? && params[:order][:name].present?
+         @selected_address = params[:order][:postal_code].to_s + " " + params[:order][:address].to_s + " " + params[:order][:name].to_s
        else
         render :new
        end
