@@ -1,16 +1,22 @@
 <div class='container W-100 my-3'>
   <div class='row my-4 w-75'>
     <div class="col-12">
-      <h4 class="bg-light px-3 mb-2 fs-6 text-center d-inline-block">
+      <h3 class="table-light thead-color px-3 mb-2 fs-6 text-center d-inline-block">
         ログイン
-      </h4>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger w-50">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      </h3>
+
     </div>
   </div>
 </div>
 <div class='container W-100 my-3'>
   <div class='row my-4 w-75'>
     <div class="col-12">
-      <h5 class="bg-light px-3 mb-3 fs-6 ml-5 text-center d-inline-block">会員の方はこちらからログイン</h5>
+      <h5 class="table-light thead-color px-3 mb-3 fs-6 ml-5 text-center d-inline-block">会員の方はこちらからログイン</h5>
       <div class="d-flex justify-content-center">
         <%= form_with model: @customer, url: session_path(resource_name), local: true do |f| %>
 
@@ -33,11 +39,11 @@
           </div>
 
           <div class="col-md-8 ml-5">
-            <%= f.submit "ログイン", class: "btn btn-primary" %>
+            <%= f.submit "ログイン", class: "btn btn-info" %>
           </div>
         <% end %>
       </div>
-      <h5 class="bg-light px-3 mt-5 fs-6 ml-5 text-center d-inline-block">会員登録がお済みでない方</h5>
+      <h5 class="table-light thead-color px-3 mt-5 fs-6 ml-5 text-center d-inline-block">会員登録がお済みでない方</h5>
       <div class="d-flex justify-content-center">
         <div class="col-md-5 mt-2 ml-2">
           <%= link_to "こちら", new_customer_registration_path %>から新規登録を行なってください。
@@ -46,4 +52,4 @@
     </div>
   </div>
 </div>
-<%= render "public/shared/links" %>
+
