@@ -28,6 +28,7 @@ ja:
       item: "商品"
       genre: "ジャンル"
       costomer: "会員"
+      address: "配送先"
     attributes:
       item:
         price: "価格"
@@ -49,6 +50,10 @@ ja:
         postal_code: "郵便番号"
         address: "住所"
         telephone_number: "電話番号"
+      address:
+        name: "宛先"
+        postal_code: "郵便番号"
+        address: "住所"
 
 
     errors:
@@ -90,6 +95,15 @@ ja:
             address:
               blank: "を入力してください"
             telephone_number:
+              blank: "を入力してください"
+
+        address:
+          attributes:
+            name:
+              blank: "を入力してください"
+            postal_code:
+              blank: "を入力してください"
+            address:
               blank: "を入力してください"
 
 
