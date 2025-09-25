@@ -59,11 +59,10 @@
       <p><%= @selected_address %></p>
 
       <%= form_with url: public_orders_path, method: :post do |f| %>
-        <%= hidden_field_tag "order[payment_method]", @selected_payment_method %>
+        <%= hidden_field_tag "order[payment_method]", @order_payment_method %>
         <%= hidden_field_tag "order[address]", @order_address %>
         <%= hidden_field_tag "order[postal_code]", @order.postal_code %>
         <%= hidden_field_tag "order[name]", @order.name %>
-
 
         <% if @selected_address_type == "registered_address" %>
           <%= hidden_field_tag "order[registered_address_id]", params[:order][:registered_address_id] %>

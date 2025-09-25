@@ -6,28 +6,40 @@ class Public::OrdersController < ApplicationController
   end
   
   def confirm
+    puts "==== params[:order] at CONFIRM ===="
+    puts params[:order].inspect
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     @cart_items = CartItem.where(customer_id: current_customer.id)
     @shipping_cost = 800
-    @selected_payment_method = params[:order][:pey_method]
+    @selected_payment_method = params[:order][:payment_method]
     
     @cart_items_price = @cart_items.sum { |item| item.item.price * item.amount }
     @total_payment = @shipping_cost + @cart_items_price
 
     @address_type = params[:order][:address_type]
+     logger.debug "==== address_type: #{@address_type} ===="
     case @address_type
     when "customer_address"
-      @order.address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
     when "registered_address"
       unless params[:order][:registered_address_id] == ""
         selected = Address.find(params[:order][:registered_address_id])
-        @order.address = selected.postal_code.to_s + " " + selected.address.to_s + " " + selected.name.to_s
+        @order.postal_code = selected.postal_code
+        @order.address = selected.address
+        @order.name = selected.name
       else	 
         render :new
       end
     when "new_address"
-      unless params[:order][:new_postal_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-      @selected_address = params[:order][:new_postal_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+      if params[:order][:postal_code].present? &&
+        params[:order][:address].present? &&
+        params[:order][:name].present?
+        @order.postal_code = params[:order][:postal_code]
+        @order.address = params[:order][:address]
+        @order.name = params[:order][:name]
     else
       render :new
     end
