@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     end
 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :genres, only: [:show]
   end
 
   
