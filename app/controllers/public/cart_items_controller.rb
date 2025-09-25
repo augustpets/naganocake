@@ -38,7 +38,7 @@ class Public::CartItemsController < ApplicationController
     if @cart_item.save
       redirect_to cart_items_path, notice: "商品をカートに追加しました"
     else
-      redirect_to public_item_path(params[:cart_item][:item_id]), alert: "商品をカートに追加できませんでした"
+      redirect_to public_item_path(params[:cart_item][:item_id]), alert: "個数を選択してください"
     end
   end
 

@@ -2,6 +2,13 @@
   <div class='row my-4 w-75'>
     <div class="col-12">
       <h5 class="bg-light px-3 mb-3 fs-6 ml-5 text-center d-inline-block">管理者ログイン</h2>
+        
+        <% if flash[:alert] %>
+          <div class="alert alert-danger w-50">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+
       <div class="d-flex justify-content-center">
         <%= form_with model: resource, url: admin_session_path, local: true do |f| %>
           <div class="form-row mb-3 ml-5">
