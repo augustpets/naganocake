@@ -4,28 +4,22 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
-    order:
       status:
         waiting: "入金待ち"
         paid_up: "入金確認"
         production: "製作中"
         preparing: "発送準備中"
         shipped: "発送済み"
-
     item:    
-       is_active:
-         for_sale: "販売中"
-         sales_stop: "販売停止中"
-
+      is_active:
+        for_sale: "販売中"
+        sales_stop: "販売停止中"
     order_detail:
       making_status:
         cannot_start: "着手不可"
         waiting_for_make: "製作待ち"
         in_production: "製作中"
         complete: "製作完了"
-
-    
-      
   activerecord:
     models:
       item: "商品"
@@ -73,12 +67,12 @@ ja:
               blank: "を選択してください"
             genre:
               blank: "を選択してください"
-
         genre:
           attributes:
             name:
               blank: "を入力してください"
-
+        order:
+          attributes:
         customer:
           attributes:
             email:
@@ -97,9 +91,10 @@ ja:
               blank: "を入力してください"
             address:
               blank: "を入力してください"
+            name:
+              blank: "を入力してください"
             telephone_number:
               blank: "を入力してください"
-
         address:
           attributes:
             name:
@@ -108,11 +103,8 @@ ja:
               blank: "を入力してください"
             address:
               blank: "を入力してください"
-
-
       messages:
         record_invalid: 'バリデーションに失敗しました： %{errors}'
-
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
@@ -126,7 +118,6 @@ ja:
     - 金
     - 土
     abbr_month_names:
-
     - 
     - 1月
     - 2月
@@ -194,7 +185,6 @@ ja:
       year: 年
   errors:
     format: "%{attribute} %{message}"
-
     messages:
       accepted: を受諾してください
       blank:: を入力してください
@@ -242,7 +232,6 @@ ja:
         significant: false
         strip_insignificant_zeros: false
         unit: 円
-
     format:
       delimiter: ","
       precision: 3
@@ -250,7 +239,6 @@ ja:
       separator: "."
       significant: false
       strip_insignificant_zeros: false
-
     human:
       decimal_units:
         format: "%n %u"
