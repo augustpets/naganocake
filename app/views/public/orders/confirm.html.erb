@@ -18,12 +18,12 @@
           <tbody>
             <tr>
               <td>
-                 <%= image_tag cart_item.item.image, size: "50x80" %>
+                 <%= image_tag cart_item.item.image, size: "50x50" %>
                 <strong><%= cart_item.item.name %></strong>
               </td>
-               <td><%= cart_item.item.price %></td>
-               <td><%= cart_item.quantity %></td>
-               <td><%= cart_item.item.price*cart_item.quantity %></td>
+               <td><%= cart_item.item.price_in_tax %></td>
+               <td><%= cart_item.amount %></td>
+               <td><%= cart_item.subtotal %></td>
             </tr>
           </tbody>
          <% end %>
@@ -42,7 +42,7 @@
         </tr>
         <tr>
           <td class="bg-light">請求金額</td>
-           <td><%= @total_pricr %></td>
+           <td><%= @total_payment %></td>
         </tr>
       </table>
     </div>
@@ -69,10 +69,13 @@
           <%= hidden_field_tag "order[new_address]", params[:order][:new_address] %>
           <%= hidden_field_tag "order[new_name]", params[:order][:new_name] %>
         <% end %>
+        <div class="d-flex justify-content-center my-4">
+          <%= submit_tag "注文を確定する", class: "btn btn-success" %>
+        </div>
       <% end %>
-
-      <%= link_to "注文を確定する", thanks_public_orders_path, class: "btn btn-success" %>
     </div>
+  </div>
+</div>
 
 
 
