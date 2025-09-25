@@ -8,10 +8,11 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    @order_detail = OrderDetail.find(params[:id])
-    @order_detail.update(making_status: params[:order_detail][:making_status])
-    update_order_status(@order_detail.order)
-    redirect_to  admin_order_path(@order_datail.order), notice: "更新に成功しました。"
+    if @order.update(order_params)
+      redirect_to admin_order_path(@order), notice: "注文ステータスを更新しました。"
+    else
+      render :show
+    end
   end
 
   private
@@ -24,8 +25,12 @@ class Admin::OrdersController < ApplicationController
     params.require(:order).permit(:status)
   end
 
+  def order_detail_params
+    params.require(:order_detail).permit(:making_status)
+  end
+
   def update_order_status(order)
-    if order.order_details.completed.counted.count == order.order_details.count
+    if order.order_details.complete.count == order.order_details.count
     order.update(status: "preparing")
   elsif order.order_details.in_production.exists?
     order.update(status: "making")
