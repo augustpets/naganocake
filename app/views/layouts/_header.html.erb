@@ -12,6 +12,7 @@
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-white mx-1" %>
 
       <% elsif customer_signed_in? %>
+        <p class="mx-1">ようこそ、<%= current_customer.last_name %>さん!</p>
         <%= link_to "マイページ", public_customer_path(current_customer), class: "btn btn-white mx-1" %>
         <%= link_to "商品一覧", public_items_path, class: "btn btn-white mx-1" %>
         <%= link_to "カート", cart_items_path, class: "btn btn-white mx-1" %>
