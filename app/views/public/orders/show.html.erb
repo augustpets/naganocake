@@ -31,7 +31,7 @@
         <table class="table">
           <tr>
             <td class="bg-light">商品合計</td>
-            <td><%= @order.total_price %></td>
+            <td><%= @cart_items_price %></td>
           </tr>
           <tr>
             <td class="bg-light">配送料</td>
@@ -39,7 +39,7 @@
           </tr>
           <tr>
             <td class="bg-light">ご請求額</td>
-            <td><%= @order.total_payment + @order.shipping_cost %></td>
+            <td><%= @total_payment %></td>
           </tr>
         </table>
       </div>
