@@ -14,14 +14,14 @@ class Public::OrdersController < ApplicationController
 
      ary = []
      @cart_items.each do |cart_item|
-       ary << cart_item.item.price*cart_item.quantity
+       ary << cart_item.item.price_in_tax*cart_item.amount
     end
 
      @cart_items_price = ary.sum
 
      @total_payment = @shipping_cost + @cart_items_price
      @address_type = params[:order][:address_type]
-     case @address_type
+     case params[:order][:address_type]
      when "customer_address"
        @selected_address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
      when "registered_address"
@@ -47,57 +47,45 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.shipping_cost = 800
-    
+    @order.status ||= 0
     @cart_items = CartItem.where(customer_id: current_customer.id)
-    ary = []
-    @cart_items.each do |cart_item|
-      ary << cart_item.item.price*cart_item.quantity
+    @shipping_cost = 800
+    @order.shipping_cost = @shipping_cost
+    @order.total_payment = @shipping_cost + @cart_items.sum { |ci| ci.item.price_in_tax * ci.amount }
+
+    address_type = params[:order][:address_type]
+    if address_type == "customer_address"
+      @order.postal_code = current_customer.postal_code
+      @order.address     = current_customer.address
+      @order.name        = "#{current_customer.last_name} #{current_customer.first_name}"
+    elsif address_type == "registered_address" && params[:order][:registered_address_id].present?
+      selected = Address.find(params[:order][:registered_address_id])
+      @order.postal_code = selected.postal_code
+      @order.address     = selected.address
+      @order.name        = selected.name
+    elsif address_type == "new_address"
+      @order.postal_code = params[:order][:new_postal_code]
+      @order.address     = params[:order][:new_address]
+      @order.name        = params[:order][:new_name]
     end
-     @cart_items_price = ary.sum
-     @order.total_payment = @order.shipping_cost + @cart_items_price
-     @order.payment_method = params[:order][:payment_method]
-     if @order.payment_method == "credit_card"
-       @order.status = 0
-     else
-       @order.status = 1
-     end
 
-    address_type = params[:order][:address]
-     case address_type
-   when "customer_address"
-     @order.postal_code = current_customer.postal_code
-     @order.address = current_customer.address
-     @order.name = current_customer.last_name + current_customer.first_name
-   when "registered_address"
-     Address.find(params[:order][:registered_address_id])
-     selected = Address.find(params[:order][:registered_address_id])
-     @order.postal_code = selected.postal_code
-     @order.address = selected.address
-     @order.name = selected.name
-   when "new_address"
-     @order.postal_code = params([:order][:new_postal_code])
-     @order.address = params([:order][:new_address])
-     @order.name = params([:order][:new_name])
-   end
-   
+    if @order.save
+      @cart_items.each do |cart_item|
+        OrderDetail.create!(
+          order_id: @order.id,
+          item_id: cart_item.item.id,
+          price: cart_item.item.price_in_tax,
+          amount: cart_item.amount,
+          making_status: 0
+          )
+        end      
+        @cart_items.destroy_all
+        redirect_to thanks_public_orders_path
+      else
+        render :new
+      end
+    end
 
-   if @order.save
-     if @order.status == 1
-       @cart_items.each do |cart_item|
-         OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 1)
-       end
-     else
-       @cart_items.each do |cart_item|
-         OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
-       end
-     end
-     @cart_items.destroy_all
-     redirect_to public_cart_items_path
-   else
-     render :items
-   end
-   end
 
   def index
     @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
@@ -111,7 +99,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :address, :payment_method, :postal_code)
+    params.require(:order).permit(:name, :address, :payment_method, :postal_code, :status)
   end
 
 end
