@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container p-2">
   <div class="row">
     <div class="col-12">
       <h4><span class="bg-light">注文履歴詳細</span></h4>
@@ -31,7 +31,7 @@
         <table class="table">
           <tr>
             <td class="bg-light">商品合計</td>
-            <td><%= @cart_items_price %></td>
+            <td><%= @order.order_details.sum { |detail| detail.price * detail.amount } %></td>
           </tr>
           <tr>
             <td class="bg-light">配送料</td>
@@ -39,7 +39,7 @@
           </tr>
           <tr>
             <td class="bg-light">ご請求額</td>
-            <td><%= @total_payment %></td>
+            <td><%= @order.total_payment %></td>
           </tr>
         </table>
       </div>
@@ -60,9 +60,9 @@
             <tbody>
               <tr>
                 <td><%= order_detail.item.name %></td>
-                <td><%= order_detaul.item.price %></td>
-                <td><%= order_detail.quantity %></td>
-                <td><%= order_detail.quantity * order_detail.item.price %></td>
+                <td><%= order_detail.item.price_in_tax %></td>
+                <td><%= order_detail.amount %></td>
+                <td><%= order_detail.amount * order_detail.item.price_in_tax %></td>
               </tr>
             </tbody>
           <% end %>
