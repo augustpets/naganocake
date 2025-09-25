@@ -13,4 +13,19 @@ class OrderDetail < ApplicationRecord
     complete: 3          
   }
 
+  after_update :update_order_status, if: :saved_change_to_making_status?
+
+  private
+
+  def update_order_status
+    if in_production?
+      order.update(status: :production) unless order.production?
+      return
+    end
+    
+    if order.order_details.all?(&:complete?)
+      order.update(status: :preparing) unless order.preparing?
+    end
+  end
 end
+
