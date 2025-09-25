@@ -4,6 +4,13 @@
       <h4 class="bg-light px-3 mb-2 fs-6 text-center d-inline-block">
         ログイン
       </h4>
+
+      <% if flash[:alert] %>
+        <div class="alert alert-danger w-50">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      
     </div>
   </div>
 </div>

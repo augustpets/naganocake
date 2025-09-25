@@ -27,6 +27,7 @@ ja:
     models:
       item: "商品"
       genre: "ジャンル"
+      costomer: "会員"
     attributes:
       item:
         price: "価格"
@@ -36,6 +37,20 @@ ja:
         genre: "ジャンル"
       genre:
         name: "ジャンル名"
+      admin:
+        email: "メールアドレス"
+      customer:
+        email: "メールアドレス"
+        password: "パスワード"
+        last_name: "姓"
+        first_name: "名"
+        last_name_kana: "姓カナ"
+        first_name_kana: "名カナ"
+        postal_code: "郵便番号"
+        address: "住所"
+        telephone_number: "電話番号"
+
+
     errors:
       models:
         item:
@@ -55,6 +70,29 @@ ja:
           attributes:
             name:
               blank: "を入力してください"
+
+        customer:
+          attributes:
+            email:
+              blank: "を入力してください"
+            password:
+              blank: "を入力してください"
+            last_name:
+              blank: "を入力してください"
+            first_name:
+              blank: "を入力してください"
+            last_name_kana:
+              blank: "を入力してください"
+            first_name_kana:
+              blank: "を入力してください"
+            postal_code:
+              blank: "を入力してください"
+            address:
+              blank: "を入力してください"
+            telephone_number:
+              blank: "を入力してください"
+
+
       messages:
         record_invalid: 'バリデーションに失敗しました： %{errors}'
 
@@ -158,6 +196,7 @@ ja:
       model_invalid: 'バリデーションに失敗しました: %{errors}'
       not_a_number: は数値で入力してください
       not_an_integer: は整数で入力してください
+      not_saved: "%{count}件のエラーがあります。" #サインイン時にエラーメッセージを日本語化させたかったため追加しました
       odd: は奇数にしてください
       other_than: は%{count}以外の値にしてください
       present: は入力しないでください
