@@ -1,7 +1,7 @@
 <div class='container W-100 my-3'>
   <div class='row my-4 w-75'>
     <div class="col-12">
-      <h5 class="bg-light px-3 mb-3 fs-6 ml-5 text-center d-inline-block">管理者ログイン</h2>
+      <h5 class="table-light thead-color px-3 mb-3 fs-6 ml-5 text-center d-inline-block">管理者ログイン</h2>
       <div class="d-flex justify-content-center">
         <%= form_with model: resource, url: admin_session_path, local: true do |f| %>
           <div class="form-row mb-3 ml-5">
@@ -24,7 +24,7 @@
 
           <div class="form-row mb-3 ml-5">
             <div class="col-form-label col-md-5">
-              <%= f.submit "ログイン", class: "btn btn-primary" %>
+              <%= f.submit "ログイン", class: "btn btn-secondary" %>
             </div>
           </div>
         <% end %>
