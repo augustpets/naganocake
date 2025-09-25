@@ -8,10 +8,12 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
+
+    @order = Order.find(params[:id])
     if @order.update(order_params)
-      redirect_to admin_order_path(@order), notice: "注文ステータスを更新しました。"
+      redirect_to admin_order_path(@order), notice: "注文ステータスを更新しました"
     else
-      render :show
+      redirect_to admin_order_path(@order), alert: "更新に失敗しました"
     end
   end
 
@@ -25,15 +27,4 @@ class Admin::OrdersController < ApplicationController
     params.require(:order).permit(:status)
   end
 
-  def order_detail_params
-    params.require(:order_detail).permit(:making_status)
-  end
-
-  def update_order_status(order)
-    if order.order_details.complete.count == order.order_details.count
-    order.update(status: "preparing")
-  elsif order.order_details.in_production.exists?
-    order.update(status: "making")
-  end
-end
 end
