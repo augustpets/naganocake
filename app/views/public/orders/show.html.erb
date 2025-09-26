@@ -8,20 +8,20 @@
       <h6>注文情報</h6>
       <table class="table">
         <tr>
-          <td class="bg-light">注文日</td>
-          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          <td class="tdd-color">注文日</td>
+          <td class="td-color"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
         <tr>
-          <td class="bg-light">配送先</td>
-          <td>〒<%= @order.postal_code + " " + @order.address + " " + @order.name %></td>
+          <td class="tdd-color">配送先</td>
+          <td class="td-color">〒<%= @order.postal_code + " " + @order.address + " " + @order.name %></td>
         </tr>
         <tr>
-          <td class="bg-light">支払方法</td>
-          <td><%= @order.payment_method_i18n %></td>
+          <td class="tdd-color">支払方法</td>
+          <td class="td-color"><%= @order.payment_method_i18n %></td>
         </tr>
         <tr>
-          <td class="bg-light">ステータス</td>
-          <td><%= @order.status_i18n %></td>
+          <td class="tdd-color">ステータス</td>
+          <td class="td-color"><%= @order.status_i18n %></td>
         </tr>
       </table>
     </div>
@@ -30,16 +30,16 @@
         <h6>請求情報</h6>
         <table class="table">
           <tr>
-            <td class="bg-light">商品合計</td>
-            <td><%= @order.order_details.sum { |detail| detail.price * detail.amount } %></td>
+            <td class="tdd-color">商品合計</td>
+            <td class="td-color"><%= @order.order_details.sum { |detail| detail.price * detail.amount } %></td>
           </tr>
           <tr>
-            <td class="bg-light">配送料</td>
-            <td><%= @order.shipping_cost %></td>
+            <td class="tdd-color">配送料</td>
+            <td class="td-color"><%= @order.shipping_cost %></td>
           </tr>
           <tr>
-            <td class="bg-light">ご請求額</td>
-            <td><%= @order.total_payment %></td>
+            <td class="tdd-color">ご請求額</td>
+            <td class="td-color"><%= @order.total_payment %></td>
           </tr>
         </table>
       </div>
@@ -48,7 +48,7 @@
       <div class="col-lg-8">
         <h6>注文内容</h6>
         <table class="table table-bordered">
-          <thead class ="thead-light">
+          <thead class ="thead-color">
             <tr>
               <th>商品</th>
               <th>単価(税込)</th>
@@ -57,7 +57,7 @@
             </tr>
           </thead>
           <% @order_details.each do |order_detail| %>
-            <tbody>
+            <tbody class="tbody-color">
               <tr>
                 <td><%= order_detail.item.name %></td>
                 <td><%= order_detail.item.price_in_tax %></td>
