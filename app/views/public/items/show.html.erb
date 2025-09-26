@@ -10,10 +10,10 @@
 
         <dl class="row col-7 pl-2 d-flex flex-column">
               <% if flash[:alert] %>
-      　　　　　　<div class = "alert alert-danger w-25 text-center">
-        　　　　　　　<%= flash[:alert] %>
-     　　　　　　 </div>
-    　　　　　　<% end %>
+                <div class = "alert alert-danger w-50 text-center">
+                  <%= flash[:alert] %>
+                </div>
+              <% end %>
           <dt class="h4"><%= @item.name %></dt>
           <dd class="w-100 text-wrap"><%= @item.introduction %></dd>
           <dt class="mt-4 h5">
