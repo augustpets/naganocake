@@ -4,9 +4,9 @@
 
     <div class="col-9">
       <div class="row my-2 justify-content-between align-items-baseline">
-        <div class="col-auto">
-          <h2 class="bg-light pl-3 d-inline-block">商品一覧</h2>
-          <h4 class="bg-light pt-2 pr-2 d-inline-block">（全<%= @items.count %>件）</h4>
+        <div class="col-auto thead-color">
+          <h2 class="pl-3 d-inline-block">商品一覧</h2>
+          <h4 class="pt-2 pr-1 d-inline-block">（全<%= Item.count %>件）</h4>
         </div>
       </div>
 
@@ -16,10 +16,10 @@
             <%= link_to public_item_path(item.id) do %>
               <%= image_tag item.get_image, class:"card-img-top" %>
             <% end %>
-            <div class="card-title">
+            <div class="card-title text-center">
               <%= item.name %>
             </div>
-            <div class="card-text">
+            <div class="card-text text-center">
               <%= number_to_currency(item.price_in_tax, unit: "￥", format: "%u%n", precision: 0) %>
             </div>
           </div>

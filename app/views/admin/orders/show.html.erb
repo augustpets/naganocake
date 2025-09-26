@@ -45,7 +45,7 @@
   <div class="row">
     <div class="col-8">
       <table class="table table-bordered">
-        <thead class="thead-light">
+        <thead class="thead-color">
           <tr>
             <th>商品名</th>
             <th>単価(税込)</th>
@@ -54,7 +54,7 @@
             <th>製作ステータス</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="tbody-color">
           <% @order_details.each do |detail| %>
             <tr>
               <td><%= detail.item.name %></td>
@@ -77,16 +77,16 @@
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <td class="bg-light font-weight-bold">商品合計</td>
-            <td><%= @order.order_details.sum { |d| d.subtotal } %>円</td>
+            <td class="tdd-color font-weight-bold">商品合計</td>
+            <td class="td-color"><%= @order.order_details.sum { |d| d.subtotal } %>円</td>
           </tr>
           <tr>
-            <td class="bg-light font-weight-bold">送料</td>
-            <td><%= @order.shipping_cost %>円</td>
+            <td class="tdd-color font-weight-bold">送料</td>
+            <td class="td-color"><%= @order.shipping_cost %>円</td>
           </tr>
           <tr>
-            <td class="bg-light font-weight-bold">請求金額合計</td>
-            <td class="font-weight-bold"><%= @order.total_payment %>円</td>
+            <td class="tdd-color font-weight-bold">請求金額合計</td>
+            <td class=" td-color font-weight-bold"><%= @order.total_payment %>円</td>
           </tr>
         </tbody>
       </table>

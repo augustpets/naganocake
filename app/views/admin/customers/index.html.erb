@@ -1,13 +1,13 @@
 <div class='container W-100 my-3'>
   <div class='row my-4 w-75'>
     <div class="col-12">
-      <h2 class="table-light thead-color px-3 text-start d-inline-block">会員一覧</h2>
+      <h2 class="table-light bg-light px-3 text-start d-inline-block">会員一覧</h2>
     </div>
   </div>
 </div>
 <div class="d-flex justify-content-center">
   <table class='table table-hover table-inverse my-2 w-75'>
-    <thead>
+    <thead class="thead-color">
       <tr>
         <th>会員ID</th>
         <th>氏名</th>
@@ -15,7 +15,7 @@
         <th>ステータス</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="tbody-color">
       <% @customers.each do |customer| %>
         <tr>
           <td><%= customer.id %></td>
