@@ -31,7 +31,7 @@ class Public::OrdersController < ApplicationController
       @selected_address = address.postal_code.to_s + " " + address.address.to_s + " " + address.name.to_s
      when "new_address"
       if params[:order][:postal_code].present? && params[:order][:address].present? && params[:order][:name].present?
-         @selected_address = params[:order][:postal_code].to_s + " " + params[:order][:address].to_s + " " + params[:order][:name].to_s
+        @selected_address = params[:order][:postal_code].to_s + " " + params[:order][:address].to_s + " " + params[:order][:name].to_s
        else
         render :new
        end
