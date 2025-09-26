@@ -5,7 +5,7 @@
 </div>
 
   <% if @genre.errors.any? %>
-    <div class = "row ml-5 w-50 alert alert-danger d-flex flex-column">
+    <div class = "row ml-5 w-25 alert alert-danger d-flex flex-column">
       <%= @genre.errors.count %>件のエラーが発生しました。
         <ul>
           <% @genre.errors.full_messages.each do |message| %>

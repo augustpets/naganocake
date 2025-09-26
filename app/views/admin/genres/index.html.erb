@@ -1,11 +1,11 @@
 <div class = "row px-5 ml-5 my-4">
-  <div class = "text-center thead-color px-3">
+  <div class = "text-center px-3">
     <h2>ジャンル一覧・追加</h2>
   </div>
 </div>
 
   <% if @genre.errors.any? %>
-    <div class = "row ml-5 w-50 alert alert-danger d-flex flex-column ">
+    <div class = "row ml-5 w-25 alert alert-danger d-flex flex-column ">
       <%= @genre.errors.count %>件のエラーが発生しました。
         <ul>
           <% @genre.errors.full_messages.each do |message| %>
@@ -25,14 +25,14 @@
 
 
 <table class="table table-sm ml-3 col-4">
-  <thead>
+  <thead class="thead-color">
     <tr>
-      <th class= "table-secondary">ジャンル</th>
-      <th class= "table-secondary"></th>
+      <th>ジャンル</th>
+      <th></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="tbody-color">
   <% @genres.each do |genre| %>
     <tr>
       <td><%= genre.name %></td>

@@ -1,5 +1,5 @@
   <div class = "row align-item-baseline  d-flex d-row justify-content-between my-3 ml-5">
-    <div class = "thead-color ml-5">
+    <div class = "bg-light ml-5">
       <h2 class = "px-3">商品一覧</h2>
     </div>
     <div class = "col-2">
@@ -9,7 +9,7 @@
 
 <div class="d-flex justify-content-center">
   <table class = "table table-hover w-75" >
-    <thead>
+    <thead class="thead-color">
       <tr>
         <th>商品ID</th>
         <th>商品名</th>
@@ -20,7 +20,7 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody class="tbody-color">
     <% @items.each do |item| %>
       <tr>
         <td><%= item.id %></td>
