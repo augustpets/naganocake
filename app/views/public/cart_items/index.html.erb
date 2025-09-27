@@ -11,7 +11,7 @@
     <% else %>
       <h2 class = "bg-light px-3">ショッピングカート</h2>
       <div class='bg-left px-3'>
-        <%= link_to "カートを空にする",destroy_all_cart_items_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "本当にカートを空にしますか？"} %>
+        <%= link_to "カートを空にする",cart_items_destroy_all_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "本当にカートを空にしますか？"} %>
       </div>
       <table class="table table-bordered align-middle">
         <thead class="table-light thead-color">
@@ -69,7 +69,7 @@
       </div>
 
       <div class="w-100 text-center my-3">
-        <%= link_to '情報入力に進む', new_public_order_path,  class: "btn",  style: "background-color: #28A745; color: #E5E5CB;" %>
+        <%= link_to '情報入力に進む', new_order_path,  class: "btn",  style: "background-color: #28A745; color: #E5E5CB;" %>
       </div>
 
     <% end %>

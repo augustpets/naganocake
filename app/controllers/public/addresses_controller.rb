@@ -9,7 +9,7 @@ class Public::AddressesController < ApplicationController
   def create
     @address = current_customer.addresses.new(address_params)
     if @address.save
-      redirect_to public_addresses_path, notice: "配送先を登録しました。"
+      redirect_to addresses_path, notice: "配送先を登録しました。"
     else
       @addresses = current_customer.addresses
       render :index
@@ -23,7 +23,7 @@ class Public::AddressesController < ApplicationController
   def update
     @address = current_customer.addresses.find(params[:id])
     if @address.update(address_params)
-      redirect_to public_addresses_path, notice: "配送先を更新しました。"
+      redirect_to addresses_path, notice: "配送先を更新しました。"
     else
       render :edit
     end
@@ -32,7 +32,7 @@ class Public::AddressesController < ApplicationController
   def destroy
     @address = current_customer.addresses.find(params[:id])
     @address.destroy
-    redirect_to public_addresses_path, notice: "配送先を削除しました。"
+    redirect_to addresses_path, notice: "配送先を削除しました。"
   end
 
   private

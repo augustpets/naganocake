@@ -4,7 +4,7 @@
   </div>
   
   <div class="my-5">
-    <%= form_with model: @address, url: public_addresses_path, local: true do |f| %>
+    <%= form_with model: @address, url: addresses_path, local: true do |f| %>
       <% if @address.errors.any? %>
         <div class="alert alert-danger w-50">
           <h5><%= pluralize(@address.errors.count, "件のエラー") %>があります:</h5>
@@ -68,8 +68,8 @@
               <td><%= address.name %></td>
               <td class="text-center">
                 <% if address.persisted? %>
-                  <%= link_to "編集する", edit_public_address_path(address), class: "btn btn-success mx-1" %>
-                  <%= link_to "削除する", public_address_path(address),
+                  <%= link_to "編集する", edit_address_path(address), class: "btn btn-success mx-1" %>
+                  <%= link_to "削除する", address_path(address),
                               method: :delete,
                               data: { confirm: "本当に削除しますか？" },
                               class: "btn btn-danger mx-1" %>
