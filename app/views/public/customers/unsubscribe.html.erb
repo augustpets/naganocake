@@ -10,8 +10,8 @@
       </p>
 
       <div class="d-flex justify-content-center gap-4">
-        <%= link_to "退会しない", public_customer_path(@customer), class: "btn btn-primary mr-3" %>
-        <%= link_to "退会する", withdraw_public_customer_path(@customer), method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %>
+        <%= link_to "退会しない", customers_mypage_path(@customer), class: "btn btn-primary mr-3" %>
+        <%= link_to "退会する", customers_withdraw_path(@customer), method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %>
       </div>
     </div>
   </div>
