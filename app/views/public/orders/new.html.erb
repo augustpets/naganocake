@@ -5,7 +5,7 @@
     <div class="col-md-6 col-md-offset-3">
       <h3 class="text-align"><span class="bg-light">注文情報入力</span></h3>
     </div>
-    <%= form_with model: @order, url: confirm_public_orders_path, method: :post do |f| %>
+    <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
     <h4 style="margin-left: -15px;">支払方法</h4>
       <%= f.radio_button :payment_method, :credit_card, checked: true %>
       <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: :credit_card} %>

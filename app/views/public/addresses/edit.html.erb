@@ -4,7 +4,7 @@
   </div>
   
   <div class="my-5">
-    <%= form_with model: [:public, @address], local: true do |f| %>
+    <%= form_with model: @address, local: true do |f| %>
       <% if @address.errors.any? %>
         <div class="alert alert-danger">
           <h5><%= pluralize(@address.errors.count, "件のエラー") %>があります:</h5>

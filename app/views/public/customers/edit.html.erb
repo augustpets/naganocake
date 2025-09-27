@@ -3,7 +3,7 @@
     <div class="col-12">
       <h4 class="table-light thead-color px-3 mb-4 fs-6 text-start d-inline-block">会員情報編集</h4>
 
-      <%= form_with model:@customer, url: public_customer_path(@customer), local: true do |f| %>
+      <%= form_with model:@customer, url: customers_information_path(@customer), local: true do |f| %>
 
         <div class="form-row mb-3">
           <div class="col-form-label col-md-2">
@@ -71,7 +71,7 @@
             <%= f.submit "編集内容を保存", class: "btn btn-success" %>
           </div>
           <div class="col-md-5">
-            <%= link_to "退会する", unsubscribe_public_customer_path(@customer), class: "btn btn-danger" %>
+            <%= link_to "退会する", customers_unsubscribe_path(@customer), class: "btn btn-danger" %>
           </div>
         </div>
     
