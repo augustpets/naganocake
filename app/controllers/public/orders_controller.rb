@@ -10,32 +10,32 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-     @cart_items = CartItem.where(customer_id: current_customer.id)
-     @shipping_cost = 800
-     @selected_payment_method = params[:order][:payment_method]
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @shipping_cost = 800
+    @selected_payment_method = params[:order][:payment_method]
 
-     ary = []
-     @cart_items.each do |cart_item|
-       ary << cart_item.item.price_in_tax*cart_item.amount
+    ary = []
+    @cart_items.each do |cart_item|
+      ary << cart_item.item.price_in_tax*cart_item.amount
     end
 
-     @cart_items_price = ary.sum
+    @cart_items_price = ary.sum
 
-     @total_payment = @shipping_cost + @cart_items_price
-     @address_type = params[:order][:address_type]
-     case @address_type
-     when "customer_address"
+    @total_payment = @shipping_cost + @cart_items_price
+    @address_type = params[:order][:address_type]
+    case @address_type
+    when "customer_address"
       @selected_address = current_customer.postal_code.to_s + " " + current_customer.address.to_s + " " + current_customer.last_name.to_s + current_customer.first_name.to_s
-     when "registered_address"
+    when "registered_address"
       address = Address.find(params[:order][:registered_address_id])
       @selected_address = address.postal_code.to_s + " " + address.address.to_s + " " + address.name.to_s
-     when "new_address"
+    when "new_address"
       if params[:order][:postal_code].present? && params[:order][:address].present? && params[:order][:name].present?
         @selected_address = params[:order][:postal_code].to_s + " " + params[:order][:address].to_s + " " + params[:order][:name].to_s
-       else
+      else
         render :new
-       end
-     end
+      end
+    end
 
    end
 
